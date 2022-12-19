@@ -16,14 +16,15 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 export class RecipesComponent implements OnInit, OnDestroy {
 
     recipes!: Recipe[];
-    selectedItem!: number;
     subscription!: Subscription;
+
 
     constructor(
         private router: Router,
         private recipeService: RecipeService
-    ) { }
+    ) {
 
+    }
 
 
     ngOnInit(): void {
