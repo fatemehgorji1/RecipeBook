@@ -1,0 +1,13 @@
+.active {
+    font-weight: bold;
+}
+
+.nav-link,
+.dropdown-item {
+    cursor: pointer;
+}
+
+.position-end {
+    position: absolute !important;
+    right: 150px !important;
+}

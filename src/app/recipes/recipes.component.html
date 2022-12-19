@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-5">
+
+            <div class="col-12 mt-5">
+                <a (click)="onAddRecipeClick()" class="btn btn-success">Add Recipe</a>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <app-recipe-item *ngFor="let recipe of recipes ; let i=index"
+                                         [item]="recipe"
+                                         [index]="i">
+                        </app-recipe-item>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-7">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,67 @@
+<div class="container mt-3 mx-4">
+    <h2>{{titleForm}}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3 mt-3">
+
+            <label class="form-label">Name :
+
+                <input formControlName="name" type="text" class="form-control">
+            </label>
+            <h6 class="text-danger"
+                *ngIf="form.controls['name'].invalid &&form.controls['name'].touched">
+                invalid name
+            </h6>
+            <h6 class="text-danger"
+                *ngIf="form.controls['name'].errors?.['required']">
+                required name
+            </h6>
+        </div>
+        <div class="mb-3 mt-3">
+            <label class="form-label" for="description">description :
+                <input type="text" formControlName="description" class="form-control" id="description">
+            </label>
+            <h6 class="text-danger"
+                *ngIf="form.controls['description'].invalid &&form.controls['description'].touched">
+                invalid description
+            </h6>
+            <h6 class="text-danger"
+                *ngIf="form.controls['description'].errors?.['required']">
+                required description
+            </h6>
+
+        </div>
+        <div class="mb-3 mt-3">
+            <label class="form-label" for="image">path image :
+                <input #imagePath type="url" formControlName="imagePath" class="form-control" id="image">
+            </label>
+            <h6 class="text-danger"
+                *ngIf="form.controls['imagePath'].invalid &&form.controls['imagePath'].touched">
+                invalid Path
+            </h6>
+            <h6 class="text-danger"
+                *ngIf="form.controls['imagePath'].errors?.['required']">
+                required Path
+            </h6>
+            <img [src]="imagePath.value" class="img-thumbnail">
+        </div>
+
+        <button (click)="addIngredient()" type="button" class="btn btn-primary text-light">Add ingredient</button>
+        <div class="mt-2" formArrayName='ingredient'>
+            <div *ngFor="let ing of ingredients?.controls ; let i=index" [formGroupName]="i" class="input-group mb-3">
+                <input type="text" formControlName="name" class="form-control" placeholder="name">
+                <input type="text" pattern="[1-9][0-9]*$" formControlName="amount" class="form-control" placeholder="amount">
+                <span (click)="onDeleteIngredient(i)" class="cursor input-group-text bg-danger text-white">X</span>
+                <span class="text-danger mx-1 mt-2"
+                      *ngIf="ingredients.controls[i].invalid && ingredients.controls[i].touched">
+                    invalid ingredient
+                </span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button [disabled]="form.invalid" type="submit" class="btn btn-success mt-3 mx-3">{{titleFormBtn}}</button>
+            <button (click)="onCansel()" type="button" class="btn btn-danger mt-3">Cansel</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,12 @@
+.cursor {
+    cursor: pointer;
+}
+
+input.ng-invalid.ng-touched {
+    border: 2px solid red !important;
+}
+
+.required:before {
+    content: "*";
+    color: red;
+}

@@ -1,0 +1,24 @@
+<div class="card mb-5 mt-5" *ngIf="recipe">
+
+    <img src="{{recipe.imagePath}}" class="card-img-top" alt="{{recipe.name}}">
+
+    <div class="card-body">
+        <h1 class="card-title">{{recipe.name}}</h1>
+        <p class="card-text">{{recipe.description}}</p>
+        <div appShowDrop class="dropdown mt-3  mb-3">
+            <button class="btn btn-primary dropdown-toggle">
+                Manage Recipe
+            </button>
+            <div class="dropdown-menu">
+                <a [ngClass]="{disabled: recipe.ingredients.length<1}" class="dropdown-item" (click)="onAddToShoppingListClick(recipe.ingredients)">To Shopping List</a>
+                <a class="dropdown-item" (click)="onDeleteRecipeClick()">Delete Recipe</a>
+                <a class="dropdown-item" (click)="onEditRecipeClick()">Edit Recipe</a>
+            </div>
+        </div>
+        <ul class="list-group mt-3">
+            <li class="list-group-item" *ngFor="let ing of recipe.ingredients">{{ing.name}} - <small>{{ing.amount}}</small></li>
+        </ul>
+
+    </div>
+
+</div>

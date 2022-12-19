@@ -1,0 +1,12 @@
+div.card {
+    cursor: pointer;
+}
+
+img {
+    max-width: 150px !important;
+    max-height: 150px !important;
+}
+
+.active {
+    background-color: rgb(82, 82, 255) !important;
+}

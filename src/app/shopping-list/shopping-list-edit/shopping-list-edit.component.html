@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="form" (ngSubmit)="onAddOrEditIngredientClick()" class="mt-5">
+            <div class="row">
+                <div class="mb-3 col-3">
+                    <label for="name" class="form-label">Name
+                        <input formControlName="name" type="text" class="form-control" id="name">
+                    </label>
+                    <h6 class="text-danger"
+                        *ngIf="form.controls['name'].invalid &&form.controls['name'].touched">
+                        invalid name ingredient
+                    </h6>
+                    <h6 class="text-danger"
+                        *ngIf="form.controls['name'].errors?.['required']">
+                        required name ingredient
+                    </h6>
+                    <h6 class="text-warning"
+                        *ngIf="form.controls['name'].errors?.['forBiddenName']">
+                        The name is repeated
+                    </h6>
+                </div>
+
+                <div class="mb-3 col-2">
+                    <label for="amount" class="form-label">Amount
+                        <input pattern="[1-9][0-9]*$" type="number" formControlName="amount" class="form-control" id="amount">
+                    </label>
+                    <h6 class="text-danger"
+                        *ngIf="form.controls['amount'].invalid && form.controls['amount'].touched">
+                        invalid amount ingredient
+                    </h6>
+                    <h6 class="text-danger"
+                        *ngIf="form.controls['amount'].errors?.['required']">
+                        required amount ingredient
+                    </h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success" [disabled]="form.invalid">{{nameBtn}}</button>
+                    <button type="button" *ngIf="nameBtn == 'Update'" (click)="onDelIngredientClick()" class="btn btn-danger mx-2">Delete</button>
+                    <button type="button" (click)="onClear()" class="btn btn-primary mx-2">Clear</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
