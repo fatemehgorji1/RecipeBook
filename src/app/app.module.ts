@@ -22,6 +22,7 @@ import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.com
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { RequriedInpDirective } from './shared/directives/requried-inp.directive';
 import { HttpClientModule } from "@angular/common/http";
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 
 
 
@@ -53,7 +54,11 @@ import { HttpClientModule } from "@angular/common/http";
 
 
   ],
-  providers: [ShoppingService, RecipeService],
+  providers: [
+    ShoppingService,
+    RecipeService,
+    DataStorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

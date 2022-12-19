@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand">Recipe Food</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
-
         <li class="nav-item">
           <a routerLink="/recipes"
              class="nav-link"
@@ -18,12 +17,10 @@
              [ngClass]="{active: selectedPage === 1}">Shopping list</a>
         </li>
         <li appShowDrop class="nav-item dropdown position-end">
-          <a class="nav-link dropdown-toggle">
-            Manage
-          </a>
+          <a class="nav-link dropdown-toggle">Manage</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Save Data</a></li>
-            <li><a class="dropdown-item">Fetch Data</a></li>
+            <li><a (click)="onSaveData()" class="dropdown-item">Save Data</a></li>
+            <li><a (click)="onFetchData()" class="dropdown-item">Fetch Data</a></li>
           </ul>
         </li>
       </ul>

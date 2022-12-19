@@ -35,6 +35,7 @@ export class SingleRecipeComponent implements OnInit {
       if (this.recipe) {
         this.recipeDetail = this.recipe;
       }
+
       if (!this.recipe) {
         this.router.navigate(['/not-found']);
       }

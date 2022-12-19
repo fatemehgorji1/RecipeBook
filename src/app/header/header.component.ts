@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 
 @Component({
     selector: 'app-header',
@@ -7,10 +8,24 @@ import { Component, Input, OnInit } from '@angular/core';
 
 })
 export class HeaderComponent implements OnInit {
+
     @Input() selectedPage: number = 0;;
 
-    constructor() { }
+    constructor(
+        private dataStorageService: DataStorageService
+    ) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+
+    }
+
+    onSaveData() {
+        this.dataStorageService.saveData();
+    }
+    onFetchData() {
+        this.dataStorageService.fetchData().subscribe((recipes) => {
+            console.log(recipes);
+        });
+    }
 
 }
