@@ -1,5 +1,9 @@
-<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-    <app-spinner></app-spinner>
+<div *ngIf="!isSpinner" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+    <div class="alert alert-danger mt-5" role="alert" *ngIf="error">
+        {{error}}
+    </div>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5 mx-5">
         <div class="mb-3 mt-3">
             <label class="form-label">E-mail :
@@ -20,4 +24,4 @@
             </button>
         </div>
     </form>
-</div>
+</div> <app-spinner *ngIf="isSpinner"></app-spinner>

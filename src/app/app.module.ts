@@ -26,6 +26,7 @@ import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.com
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fixed';
 
 
 
@@ -62,8 +63,8 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-
-    HttpClientModule
+    HttpClientModule,
+    SpinnerCircularFixedModule
   ],
   providers: [
     ShoppingService,

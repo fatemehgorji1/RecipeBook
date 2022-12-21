@@ -10,6 +10,10 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class AuthComponent implements OnInit {
   isModeTextBtn = false;
   form!: FormGroup;
+  isSpinner = false;
+  error: string = '';
+
+
   constructor(
     private authService: AuthService
   ) { }
@@ -30,21 +34,27 @@ export class AuthComponent implements OnInit {
     this.isModeTextBtn = !this.isModeTextBtn;
   }
   onSubmit() {
-
+    if (this.form.invalid) {
+      return;
+    }
+    this.isSpinner = true;
     if (this.isModeTextBtn) {
 
       this.authService.signUp(
         this.form.controls['email'].value,
         this.form.controls['password'].value
       ).subscribe(res => {
+        this.isSpinner = false;
         console.log(res);
-      }, error => {
-        console.log(error);
+      }, errorRes => {
+        this.isSpinner = false;
+        console.log(errorRes);
       })
 
     }
     else {
       //...
+      this.isSpinner = false
     }
     //console.log(this.form.value);
     this.form.reset();

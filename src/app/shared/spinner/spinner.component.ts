@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styles: [
     `
   .spinner {
-    margin-top: 150px !important;
+    position : absolute;
+    top: 25%;
+    left : 50%;
    }
     `
   ]
