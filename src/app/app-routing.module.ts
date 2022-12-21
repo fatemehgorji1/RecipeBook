@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from 'src/app/auth/auth.component';
 
 import { ErrorPageComponent } from 'src/app/error-page/error-page.component';
 import { NewRecipeComponent } from 'src/app/recipes/new-recipe/new-recipe.component';
@@ -24,6 +25,8 @@ const routes: Routes = [
   },
 
   { path: 'shoppingList', component: ShoppingListComponent },
+
+  { path: 'auth', component: AuthComponent },
 
   {
     path: 'not-found',

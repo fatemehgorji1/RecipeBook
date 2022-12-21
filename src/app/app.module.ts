@@ -4,12 +4,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from "@angular/common/http";
+//
 import { ShowDropDirective } from 'src/app/shared/directives/show-drop.directive';
-
+import { RequriedInpDirective } from './shared/directives/requried-inp.directive';
+//
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
-
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { ResolveService } from 'src/app/shared/services/resolve.service';
+//
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -20,19 +24,20 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { NewRecipeComponent } from './recipes/new-recipe/new-recipe.component';
 import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.component';
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
-import { RequriedInpDirective } from './shared/directives/requried-inp.directive';
-import { HttpClientModule } from "@angular/common/http";
-import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 import { AuthComponent } from './auth/auth.component';
+
+
+
+
 
 
 
 @NgModule({
   declarations: [
+    //
     AppComponent,
     HeaderComponent,
     RecipesComponent,
-
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingListEditComponent,
@@ -40,26 +45,28 @@ import { AuthComponent } from './auth/auth.component';
     NewRecipeComponent,
     SingleRecipeComponent,
     StartRecipesComponent,
+    AuthComponent,
+    //
     ShowDropDirective,
-    RequriedInpDirective,
-    AuthComponent
+    RequriedInpDirective
+
 
   ],
   imports: [
+    ToastrModule.forRoot(),
+    //
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule
-
-
   ],
   providers: [
     ShoppingService,
     RecipeService,
-    DataStorageService
+    DataStorageService,
+    ResolveService
   ],
   bootstrap: [AppComponent]
 })
