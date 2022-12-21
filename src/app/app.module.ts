@@ -23,6 +23,7 @@ import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.com
 import { RequriedInpDirective } from './shared/directives/requried-inp.directive';
 import { HttpClientModule } from "@angular/common/http";
 import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -40,7 +41,8 @@ import { DataStorageService } from 'src/app/shared/services/data-storage.service
     SingleRecipeComponent,
     StartRecipesComponent,
     ShowDropDirective,
-    RequriedInpDirective
+    RequriedInpDirective,
+    AuthComponent
 
   ],
   imports: [

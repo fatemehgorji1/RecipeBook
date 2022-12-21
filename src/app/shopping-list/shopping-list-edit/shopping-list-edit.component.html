@@ -3,8 +3,8 @@
         <form [formGroup]="form" (ngSubmit)="onAddOrEditIngredientClick()" class="mt-5">
             <div class="row">
                 <div class="mb-3 col-3">
-                    <label for="name" class="form-label">Name
-                        <input formControlName="name" type="text" class="form-control" id="name">
+                    <label class="form-label">Name
+                        <input formControlName="name" type="text" class="form-control">
                     </label>
                     <h6 class="text-danger"
                         *ngIf="form.controls['name'].invalid &&form.controls['name'].touched">
@@ -21,8 +21,8 @@
                 </div>
 
                 <div class="mb-3 col-2">
-                    <label for="amount" class="form-label">Amount
-                        <input pattern="[1-9][0-9]*$" type="number" formControlName="amount" class="form-control" id="amount">
+                    <label class="form-label">Amount
+                        <input pattern="[1-9][0-9]*$" type="number" formControlName="amount" class="form-control">
                     </label>
                     <h6 class="text-danger"
                         *ngIf="form.controls['amount'].invalid && form.controls['amount'].touched">
