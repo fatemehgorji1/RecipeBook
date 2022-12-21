@@ -1,16 +1,22 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5 mx-5">
-    <div class="mb-3 mt-3">
-        <label class="form-label">E-mail :
-            <input type="email" class="form-control">
-        </label>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5 mx-5">
+                <div class="mb-3 mt-3">
+                    <label class="form-label">E-mail :
+                        <input formControlName="email" type="email" class="form-control">
+                    </label>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Password :
+                        <input type="password" formControlName="password" class="form-control">
+                    </label>
+                </div>
+                <div class="mb-3 mt-3">
+                    <button type="submit" class="btn btn-primary">k</button>
+                    <button type="button" class="btn btn-primary">u</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3 mt-3">
-        <label class="form-label">Password :
-            <input type="password" class="form-control">
-        </label>
-    </div>
-    <div class="mb-3 mt-3">
-        <button type="submit" class="btn btn-primary">k</button>
-        <button type="button" class="btn btn-primary">u</button>
-    </div>
-</form>
+</div>

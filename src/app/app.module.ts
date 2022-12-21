@@ -53,13 +53,14 @@ import { AuthComponent } from './auth/auth.component';
 
   ],
   imports: [
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     //
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
+
     HttpClientModule
   ],
   providers: [
