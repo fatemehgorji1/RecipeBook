@@ -27,11 +27,14 @@ export class AppComponent implements OnInit {
   }
 
   invalidate() {
-    if (this.router.url.endsWith('/recipes')) {
+    if (this.router.url.endsWith('/auth')) {
       this.selectedPage = 0;
     }
-    if (this.router.url.endsWith('/shoppingList')) {
+    if (this.router.url.endsWith('/recipes')) {
       this.selectedPage = 1;
+    }
+    if (this.router.url.endsWith('/shoppingList')) {
+      this.selectedPage = 2;
     }
   }
 }

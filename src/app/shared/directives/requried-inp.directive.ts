@@ -21,7 +21,7 @@ export class RequriedInpDirective implements OnInit {
   ngOnInit(): void {
 
     const label = this.el.nativeElement.parentNode;
-    console.log(label);
+
 
     if (this.ngControl.control &&
       this.ngControl.control.validator && this.el && this.el.nativeElement) {

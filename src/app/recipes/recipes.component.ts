@@ -6,8 +6,6 @@ import { Recipe } from 'src/app/recipes/recipe';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 
-
-
 @Component({
     selector: 'app-recipes',
     templateUrl: './recipes.component.html',

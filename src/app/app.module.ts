@@ -25,6 +25,7 @@ import { NewRecipeComponent } from './recipes/new-recipe/new-recipe.component';
 import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.component';
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { AuthComponent } from './auth/auth.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
 
@@ -48,7 +49,8 @@ import { AuthComponent } from './auth/auth.component';
     AuthComponent,
     //
     ShowDropDirective,
-    RequriedInpDirective
+    RequriedInpDirective,
+    SpinnerComponent
 
 
   ],
