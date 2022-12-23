@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 export interface IAuth {
   idToken: string;
@@ -44,26 +44,26 @@ export class AuthService {
       email: email,
       password: password,
       returnSecureToken: true
-    }).pipe(catchError(this.handleError));
-  }
+    }).pipe(catchError(errorRes => {
 
+      let errorMessage = 'an error unknown occurred';
 
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'an error unknown occurred';
+      if (!errorRes.error || !errorRes.error.error) {
+        return throwError(errorMessage);
+      }
+      switch (errorRes.error.error.message) {
 
-    if (!errorRes.error || !errorRes.error.error) {
+        case 'INVALID_PASSWORD':
+          errorMessage = 'The password entered is not correct';
+          break;
+        case 'EMAIL_NOT_FOUND':
+          errorMessage = 'The email entered was not found';
+          break;
+      }
       return throwError(errorMessage);
-    }
-    switch (errorRes.error.error.message) {
-
-      case 'INVALID_PASSWORD':
-        errorMessage = 'The password entered is not correct';
-        break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'The email entered was not found';
-        break;
-    }
-    return throwError(errorMessage);
+    }))
   }
+
+
 }
 
