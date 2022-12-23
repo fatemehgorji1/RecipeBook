@@ -27,6 +27,7 @@ import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.com
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fixed';
+import { HamburgerToggleDirective } from './shared/directives/hamburger-toggle.directive';
 
 
 
@@ -51,7 +52,8 @@ import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fi
     //
     ShowDropDirective,
     RequriedInpDirective,
-    SpinnerComponent
+    SpinnerComponent,
+    HamburgerToggleDirective
 
 
   ],
