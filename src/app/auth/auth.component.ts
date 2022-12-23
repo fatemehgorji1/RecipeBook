@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
-
+import { Observable } from 'rxjs';
+import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -13,10 +14,13 @@ export class AuthComponent implements OnInit {
   isSpinner = false;
   form!: FormGroup;
   error: string = '';
+  successMessage = '';
+
 
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -27,48 +31,49 @@ export class AuthComponent implements OnInit {
         Validators.email
       ]),
       'password': new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(6)
       ])
     })
   }
+
   onChangeModeBtn() {
     this.isModeTextBtn = !this.isModeTextBtn;
   }
+
   onSubmit() {
+    let authObs!: Observable<IAuth>;
 
     const email = this.form.controls['email'].value;
     const password = this.form.controls['password'].value;
+
     if (this.form.invalid) {
       return;
     }
+
     this.isSpinner = true;
 
     if (this.isModeTextBtn) {
 
-      this.authService.signUp(email, password)
-        .subscribe(res => {
-          console.log(res);
-          this.isSpinner = false;
-        },
-          errorRes => {
-            this.error = errorRes;
-            this.isSpinner = false;
-          })
+      authObs = this.authService.signUp(email, password);
 
     }
     else {
 
-      this.authService.login(email, password).subscribe(res => {
-        console.log(res);
-        this.isSpinner = false;
-      },
-        errorRes => {
-          console.log(errorRes);
-          this.error = errorRes;
-          this.isSpinner = false;
-        })
+      authObs = this.authService.login(email, password);
 
     }
+
+    authObs.subscribe(res => {
+      console.log(res);
+
+      this.isSpinner = false;
+
+    },
+      errorRes => {
+        this.error = errorRes;
+        this.isSpinner = false;
+      })
 
     this.form.reset();
   }

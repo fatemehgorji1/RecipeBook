@@ -1,13 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-interface IAuth {
-  expires_in: string;
-  token_type: string;
-  refresh_token: string;
-  id_token: string;
-  user_id: string;
-  project_id: string;
+export interface IAuth {
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
   registered: boolean;
 }
 @Injectable({
@@ -39,31 +38,32 @@ export class AuthService {
       return throwError(errorMessage);
     }))
   }
-  //
-  //
+
   login(email: string, password: string) {
     return this.http.post<IAuth>(this.urlLogin, {
       email: email,
       password: password,
       returnSecureToken: true
-    }).pipe(catchError(errorRes => {
+    }).pipe(catchError(this.handleError));
+  }
 
-      let errorMessage = 'an error unknown occurred';
 
-      if (!errorRes.error || !errorRes.error.error) {
-        return throwError(errorMessage);
-      }
-      switch (errorRes.error.error.message) {
+  private handleError(errorRes: HttpErrorResponse) {
+    let errorMessage = 'an error unknown occurred';
 
-        case 'INVALID_PASSWORD':
-          errorMessage = 'The password entered is not correct';
-          break;
-        case 'EMAIL_NOT_FOUND':
-          errorMessage = 'The email entered was not found';
-          break;
-      }
+    if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
-    }))
+    }
+    switch (errorRes.error.error.message) {
+
+      case 'INVALID_PASSWORD':
+        errorMessage = 'The password entered is not correct';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errorMessage = 'The email entered was not found';
+        break;
+    }
+    return throwError(errorMessage);
   }
 }
 

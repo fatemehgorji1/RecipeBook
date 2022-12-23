@@ -20,7 +20,6 @@ export class ShoppingService {
 
   ]
 
-
   getIngredientList() {
     return this.ingredientList;
   }
