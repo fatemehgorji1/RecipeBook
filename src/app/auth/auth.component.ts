@@ -64,7 +64,7 @@ export class AuthComponent implements OnInit {
       },
         errorRes => {
           console.log(errorRes);
-
+          this.error = errorRes;
           this.isSpinner = false;
         })
 
