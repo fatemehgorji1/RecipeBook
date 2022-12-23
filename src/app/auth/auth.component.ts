@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+
 import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -13,14 +14,11 @@ export class AuthComponent implements OnInit {
   isModeTextBtn = false;
   isSpinner = false;
   form!: FormGroup;
-  error: string = '';
-  successMessage = '';
-
+  errorMessage: string = '';
 
 
   constructor(
-    private authService: AuthService,
-    private toastr: ToastrService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +29,7 @@ export class AuthComponent implements OnInit {
         Validators.email
       ]),
       'password': new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
+        Validators.required
       ])
     })
   }
@@ -42,6 +39,7 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
+
     let authObs!: Observable<IAuth>;
 
     const email = this.form.controls['email'].value;
@@ -53,7 +51,7 @@ export class AuthComponent implements OnInit {
 
     this.isSpinner = true;
 
-    if (this.isModeTextBtn) {
+    if (this.isModeTextBtn === true) {
 
       authObs = this.authService.signUp(email, password);
 
@@ -65,13 +63,16 @@ export class AuthComponent implements OnInit {
     }
 
     authObs.subscribe(res => {
-      console.log(res);
+      if (res.expiresIn === '3600') {
+        console.log(res);
 
-      this.isSpinner = false;
+        this.isSpinner = false;
+      }
 
     },
       errorRes => {
-        this.error = errorRes;
+        this.errorMessage = errorRes;
+
         this.isSpinner = false;
       })
 

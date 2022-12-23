@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 export interface IAuth {
   idToken: string;
@@ -8,6 +8,7 @@ export interface IAuth {
   expiresIn: string;
   localId: string;
   registered: boolean;
+  status: 'success';
 }
 @Injectable({
   providedIn: 'root'

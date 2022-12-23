@@ -7,7 +7,7 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   template: `
   <h3 *ngIf="recipes.length>0 ; else noRecipes" class="mt-5 mx-5">Select the Recipe !</h3>
   <ng-template #noRecipes>
-    <h3 class="mt-5 mx-5">Added the Item Or Fetch Data ...</h3>
+    <h3 class="mt-5 mx-5">Fetch Data ...</h3>
   </ng-template>
   `
 })
