@@ -8,9 +8,10 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+
   isModeTextBtn = false;
-  form!: FormGroup;
   isSpinner = false;
+  form!: FormGroup;
   error: string = '';
 
 
@@ -34,29 +35,41 @@ export class AuthComponent implements OnInit {
     this.isModeTextBtn = !this.isModeTextBtn;
   }
   onSubmit() {
+
+    const email = this.form.controls['email'].value;
+    const password = this.form.controls['password'].value;
     if (this.form.invalid) {
       return;
     }
     this.isSpinner = true;
+
     if (this.isModeTextBtn) {
 
-      this.authService.signUp(
-        this.form.controls['email'].value,
-        this.form.controls['password'].value
-      ).subscribe(res => {
-        this.isSpinner = false;
-        console.log(res);
-      }, errorRes => {
-        this.isSpinner = false;
-        console.log(errorRes);
-      })
+      this.authService.signUp(email, password)
+        .subscribe(res => {
+          console.log(res);
+          this.isSpinner = false;
+        },
+          errorRes => {
+            this.error = errorRes;
+            this.isSpinner = false;
+          })
 
     }
     else {
-      //...
-      this.isSpinner = false
+
+      this.authService.login(email, password).subscribe(res => {
+        console.log(res);
+        this.isSpinner = false;
+      },
+        errorRes => {
+          console.log(errorRes);
+
+          this.isSpinner = false;
+        })
+
     }
-    //console.log(this.form.value);
+
     this.form.reset();
   }
 
