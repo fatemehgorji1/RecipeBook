@@ -3,7 +3,7 @@
     <div class="alert alert-danger mt-5" role="alert" *ngIf="errorMessage">
         {{errorMessage}}
     </div>
-    <div class="alert alert-success mt-5" role="alert" *ngIf="successMessage">
+    <div class="alert alert-success mt-5" role="alert" *ngIf="successMessage && !errorMessage">
         {{successMessage}}
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5 mx-5">

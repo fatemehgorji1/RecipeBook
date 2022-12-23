@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit {
   isSpinner = false;
   form!: FormGroup;
   errorMessage: string = '';
-  successMessage: boolean = false;
+  successMessage: string = '';
 
   constructor(
     private authService: AuthService
@@ -63,7 +63,7 @@ export class AuthComponent implements OnInit {
     authObs.subscribe(res => {
 
       console.log(res);
-      this.successMessage = true;
+      this.successMessage = 'success !!';
       this.isSpinner = false;
 
     },
