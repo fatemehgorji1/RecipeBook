@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit {
   isSpinner = false;
   form!: FormGroup;
   errorMessage: string = '';
-
+  successMessage: boolean = false;
 
   constructor(
     private authService: AuthService
@@ -30,7 +30,8 @@ export class AuthComponent implements OnInit {
       ]),
       'password': new FormControl('', [
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(6),
+        Validators.maxLength(10)
       ])
     })
   }
@@ -53,28 +54,24 @@ export class AuthComponent implements OnInit {
     this.isSpinner = true;
 
     if (this.isModeTextBtn === true) {
-
       authObs = this.authService.signUp(email, password);
-
     }
     else {
-
       authObs = this.authService.login(email, password);
-
     }
 
     authObs.subscribe(res => {
-      if (res.expiresIn === '3600') {
-        console.log(res);
 
-        this.isSpinner = false;
-      }
+      console.log(res);
+      this.successMessage = true;
+      this.isSpinner = false;
 
     },
       errorRes => {
-        this.errorMessage = errorRes;
 
+        this.errorMessage = errorRes;
         this.isSpinner = false;
+
       })
 
     this.form.reset();

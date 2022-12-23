@@ -81,6 +81,9 @@ export class NewRecipeComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
     if (this.titleFormBtn === "Add") {
       this.recipeService.addnewRecipe({
         name: this.form.value.name,

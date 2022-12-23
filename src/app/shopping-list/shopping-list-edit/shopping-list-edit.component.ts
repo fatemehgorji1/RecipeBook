@@ -60,7 +60,9 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   //events 
 
   onAddOrEditIngredientClick() {
-
+    if (this.form.invalid) {
+      return;
+    }
     if (this.nameBtn == 'Add') {
       if (this.form.controls['name'].value != "" && this.form.controls['amount'].value != 0) {
         this.shopService.addIngredient({
