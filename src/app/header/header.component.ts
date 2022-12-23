@@ -8,7 +8,7 @@ import { DataStorageService } from 'src/app/shared/services/data-storage.service
 
 })
 export class HeaderComponent implements OnInit {
-
+    isToggleMenu: boolean = false;
     @Input() selectedPage!: number;
 
     constructor(
@@ -19,6 +19,10 @@ export class HeaderComponent implements OnInit {
 
     }
 
+    //events 
+    onToggleMenu() {
+        this.isToggleMenu = !this.isToggleMenu;
+    }
     onSaveData() {
         this.dataStorageService.saveData();
     }

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
+import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fixed';
 //
 import { ShowDropDirective } from 'src/app/shared/directives/show-drop.directive';
 import { RequriedInpDirective } from './shared/directives/requried-inp.directive';
@@ -26,11 +27,6 @@ import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.com
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fixed';
-import { HamburgerToggleDirective } from './shared/directives/hamburger-toggle.directive';
-
-
-
 
 
 
@@ -52,9 +48,7 @@ import { HamburgerToggleDirective } from './shared/directives/hamburger-toggle.d
     //
     ShowDropDirective,
     RequriedInpDirective,
-    SpinnerComponent,
-    HamburgerToggleDirective
-
+    SpinnerComponent
 
   ],
   imports: [
