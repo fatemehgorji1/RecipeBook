@@ -7,13 +7,27 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5 mx-5">
         <div class="mb-3 mt-3">
             <label class="form-label">E-mail :
-                <input formControlName="email" type="email" class="form-control">
+                <input pattern="^([0-9]{9})|([A-Za-z0-9._%\+\-]+@[a-z0-9.\-]+\.[a-z]{2,3})$" formControlName="email" type="email" class="form-control">
             </label>
+            <h6 class="text-danger"
+                *ngIf="form.controls['email'].errors?.['email'] &&form.controls['email'].touched">
+                invalid email
+            </h6>
+            <h6 class="text-danger"
+                *ngIf="form.controls['email'].errors?.['required']">
+                required email
+            </h6>
+
         </div>
         <div class="mb-3 mt-3">
             <label class="form-label">Password :
-                <input minlength="6" type="password" formControlName="password" class="form-control">
+                <input minlength="6" maxlength="10" type="password" formControlName="password" class="form-control">
             </label>
+            <h6 class="text-danger"
+                *ngIf="form.controls['password'].errors?.['minlength']">
+                password must be at least 6 characters long.
+            </h6>
+
         </div>
         <div class="mb-3 mt-3">
             <button type="submit" [disabled]="isModeTextBtn ? form.invalid : form.invalid" class="btn btn-primary mx-3">
