@@ -22,12 +22,13 @@ export class AuthService {
   ) { }
 
   signUp(email: string, password: string) {
+
     return this.http.post<IAuth>(this.urlSignUp, {
       email: email,
       password: password,
       returnSecureToken: true
 
-    }).pipe(catchError(this.handleError));
+    }).pipe(catchError(this.handleError))
   }
 
   login(email: string, password: string) {
@@ -35,7 +36,7 @@ export class AuthService {
       email: email,
       password: password,
       returnSecureToken: true
-    }).pipe(catchError(this.handleError));
+    }).pipe(catchError(this.handleError))
   }
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -53,9 +54,11 @@ export class AuthService {
       case 'EMAIL_NOT_FOUND':
         errorMessage = 'The email entered was not found';
         break;
+      case 'EMAIL_EXISTS':
+        errorMessage = 'Email is already used';
+        break;
     }
     return throwError(errorMessage);
-
   }
 }
 
