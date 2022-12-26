@@ -63,7 +63,7 @@ export class AuthComponent implements OnInit {
     authObs.subscribe(res => {
 
       console.log(res);
-      this.successMessage = 'success !!';
+      this.successMessage = ' success ' + res.email;
       this.isSpinner = false;
 
     },
