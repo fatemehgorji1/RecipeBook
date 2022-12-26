@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
@@ -18,7 +19,8 @@ export class AuthComponent implements OnInit {
   successMessage: string = '';
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -63,9 +65,9 @@ export class AuthComponent implements OnInit {
     authObs.subscribe(res => {
 
       console.log(res);
+      this.router.navigate(['/recipes']);
       this.successMessage = ' success ' + res.email;
       this.isSpinner = false;
-
     },
       errorRes => {
 
