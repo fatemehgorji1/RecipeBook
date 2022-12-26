@@ -12,7 +12,7 @@ import { ShoppingListComponent } from 'src/app/shopping-list/shopping-list.compo
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
 
   {
     path: 'recipes', component: RecipesComponent, children:

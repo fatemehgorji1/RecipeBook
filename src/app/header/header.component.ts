@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
         this.isToggleMenu = !this.isToggleMenu;
     }
     onSaveData() {
-        this.dataStorageService.saveData();
+        this.dataStorageService.storeRecipes();
     }
     onFetchData() {
         this.dataStorageService.fetchData().subscribe((recipes) => {

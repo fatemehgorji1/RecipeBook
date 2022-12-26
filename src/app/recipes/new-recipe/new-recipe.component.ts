@@ -34,8 +34,7 @@ export class NewRecipeComponent implements OnInit {
 
     this.form = new FormGroup({
       'name': new FormControl(null, [
-        Validators.required,
-        this.forBiddenRecipeName.bind(this)
+        Validators.required
       ],),
       'description': new FormControl(null, [
         Validators.required
@@ -110,13 +109,5 @@ export class NewRecipeComponent implements OnInit {
     this.newIngredients.removeAt(index);
   }
 
-  forBiddenRecipeName(control: FormControl) {
-    const recipes = this.recipeService.getRecipes();
-    for (const recipe of recipes) {
-      if (control.value === recipe.name) {
-        return { 'forBiddenName': true }
-      }
-    }
-    return null;
-  }
+
 }
