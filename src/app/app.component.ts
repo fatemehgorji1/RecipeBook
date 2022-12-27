@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
