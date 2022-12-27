@@ -12,6 +12,7 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
   styleUrls: ['./shopping-list-edit.component.css']
 })
 export class ShoppingListEditComponent implements OnInit, OnDestroy {
+
   subscription !: Subscription;
   form !: FormGroup;
   nameBtn: string = '';
@@ -30,7 +31,8 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       'name': new FormControl(null, [
         Validators.required,
-        this.forBiddeningredientName.bind(this)
+        this.forBiddeningredientName.bind(this),
+
       ]),
       'amount': new FormControl(null, [
         Validators.required
@@ -97,9 +99,16 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
 
   forBiddeningredientName(control: FormControl) {
     this.ingredients = this.shopService.getIngredientList();
+
+    const controlBySpace = control.value?.trim() || '';
+
+
     if (this.nameBtn === 'Add') {
+      console.log(controlBySpace);
+
       for (const ing of this.ingredients) {
-        if (control.value === ing.name) {
+
+        if (controlBySpace == ing.name) {
           return { 'forBiddenName': true }
         }
       }
