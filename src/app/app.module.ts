@@ -45,10 +45,11 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     SingleRecipeComponent,
     StartRecipesComponent,
     AuthComponent,
+    SpinnerComponent,
     //
     ShowDropDirective,
-    RequriedInpDirective,
-    SpinnerComponent
+    RequriedInpDirective
+
 
   ],
   imports: [
