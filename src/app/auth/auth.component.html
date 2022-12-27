@@ -23,8 +23,16 @@
         </div>
         <div class="mb-3 mt-3">
             <label class="form-label">Password :
-                <input minlength="6" type="password" formControlName="password" class="form-control">
+                <input pattern="/.*\S.*/" minlength="6" type="password" formControlName="password" class="form-control">
             </label>
+            <h6 class="text-danger"
+                *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                invalid password
+            </h6>
+            <h6 class=" text-danger"
+                *ngIf="form.controls['password'].errors?.['required']">
+                required password
+            </h6>
             <h6 class="text-danger"
                 *ngIf="form.controls['password'].errors?.['minlength']">
                 password must be at least 6 characters long.
