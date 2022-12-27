@@ -11,8 +11,10 @@
       <ul class="navbar-nav">
 
         <li *ngIf="isAuthenticated" class="nav-item">
-          <a
-             class="btn btn-danger ">Log Out</a>
+          <a (click)="onLogOut()"
+             class="nav-link text-light bg-danger">
+            Log Out
+          </a>
         </li>
 
         <li *ngIf="!isAuthenticated" class="nav-item">

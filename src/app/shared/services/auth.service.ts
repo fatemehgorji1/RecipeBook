@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 import { User } from 'src/app/user';
@@ -21,11 +22,9 @@ export class AuthService {
   private urlSignUp: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyClSArImXUXK_Q77Vxr_ULo3KT1BPcUEp8'
   private urlLogin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyClSArImXUXK_Q77Vxr_ULo3KT1BPcUEp8';
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
-
-
-
 
 
   signUp(email: string, password: string) {
@@ -61,9 +60,13 @@ export class AuthService {
       )
     }))
   }
+  logOut() {
+    if (this.user) {
+      this.user.next(null);
+      this.router.navigate(['/auth']);
 
-
-
+    }
+  }
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
     const refreshToken = new Date(
@@ -77,6 +80,7 @@ export class AuthService {
     )
     this.user.next(user);
   }
+
   private handleError(errorRes: HttpErrorResponse) {
 
     let errorMessage = 'an error unknown occurred';

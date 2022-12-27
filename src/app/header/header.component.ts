@@ -39,5 +39,8 @@ export class HeaderComponent implements OnInit {
             console.log(recipes);
         });
     }
+    onLogOut() {
+        this.authService.logOut();
+    }
 
 }
