@@ -35,7 +35,7 @@ export class ShoppingService {
   addIngredients(ingredients: Ingredient[]) {
 
     for (const ingredient of ingredients) {
-      let ing = this.ingredientList.find(x => x.name === ingredient.name);
+      let ing = this.ingredientList.find(x => x.name === ingredient.name.trim());
       if (ing) {
         ing.amount = (+ingredient.amount) + (+ing.amount);
       }
@@ -62,7 +62,7 @@ export class ShoppingService {
 
   private add(ingredient: Ingredient) {
 
-    let ing = this.ingredientList.find(x => x.name === ingredient.name);
+    let ing = this.ingredientList.find(x => x.name === ingredient.name.trim());
     if (!ing) {
       this.ingredientList.push({
         name: ingredient.name,

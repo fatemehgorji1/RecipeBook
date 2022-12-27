@@ -55,7 +55,7 @@ export class NewRecipeComponent implements OnInit {
         this.form.controls['name'].setValue(this.recipe.name);
         this.form.controls['description'].setValue(this.recipe.description);
         this.form.controls['imagePath'].setValue(this.recipe.imagePath);
-        // this.form.controls['ingredient'].setValue(this.recipe.ingredients);
+
         if (this.recipe.ingredients) {
           for (const ing of this.recipe.ingredients) {
             this.newIngredients.push(new FormGroup({
@@ -92,7 +92,8 @@ export class NewRecipeComponent implements OnInit {
         ingredients: this.form.value.ingredient
       })
     } else if (this.recipe) {
-      this.recipeService.editRecipe(this.paramId, {
+      this.recipeService.editRecipe(
+        this.paramId, {
         name: this.form.value.name,
         imagePath: this.form.value.imagePath,
         description: this.form.value.description,

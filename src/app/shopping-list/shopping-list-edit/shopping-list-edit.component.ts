@@ -31,7 +31,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       'name': new FormControl(null, [
         Validators.required,
-        this.forBiddeningredientName.bind(this),
+        this.forBiddeningredientName.bind(this)
 
       ]),
       'amount': new FormControl(null, [
@@ -45,7 +45,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
       if (this.ingredient) {
 
         this.nameBtn = 'Update';
-        this.form.controls['name'].setValue(this.ingredient.name);
+        this.form.controls['name'].setValue(this.ingredient.name.trim());
         this.form.controls['amount'].setValue(this.ingredient.amount);
 
       }
@@ -66,16 +66,18 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
       return;
     }
     if (this.nameBtn == 'Add') {
-      if (this.form.controls['name'].value != "" && this.form.controls['amount'].value != 0) {
+      if (this.form.controls['name'].value != ""
+        && this.form.controls['amount'].value != 0) {
         this.shopService.addIngredient({
-          name: this.form.controls['name'].value,
+          name: this.form.controls['name'].value.trim(),
           amount: this.form.controls['amount'].value
         })
       }
     }
     else if (this.ingredient) {
-      this.shopService.editIngredient(this.indexEdit, {
-        name: this.form.controls['name'].value,
+      this.shopService.editIngredient(
+        this.indexEdit, {
+        name: this.form.controls['name'].value.trim(),
         amount: this.form.controls['amount'].value
       })
     }
@@ -98,17 +100,17 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   }
 
   forBiddeningredientName(control: FormControl) {
-    this.ingredients = this.shopService.getIngredientList();
 
-    const controlBySpace = control.value?.trim() || '';
+    const controlValueWithSpace = control.value?.trim() || '';
+
+    this.ingredients = this.shopService.getIngredientList();
 
 
     if (this.nameBtn === 'Add') {
-      console.log(controlBySpace);
 
       for (const ing of this.ingredients) {
 
-        if (controlBySpace == ing.name) {
+        if (controlValueWithSpace == ing.name) {
           return { 'forBiddenName': true }
         }
       }
