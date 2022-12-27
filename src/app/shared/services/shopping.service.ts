@@ -33,10 +33,11 @@ export class ShoppingService {
   }
 
   addIngredients(ingredients: Ingredient[]) {
+    debugger;
     for (const ingredient of ingredients) {
       let ing = this.ingredientList.find(x => x.name === ingredient.name);
       if (ing) {
-        ing.amount += ingredient.amount;
+        ing.amount = (+ingredient.amount) + (+ing.amount);
       }
       this.add(ingredient);
     }
