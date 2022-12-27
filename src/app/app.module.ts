@@ -15,6 +15,8 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 import { ResolveService } from 'src/app/shared/services/resolve.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor.service';
+import { AuthGaurdService } from 'src/app/shared/services/auth-gaurd.service';
 //
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/app/header/header.component';
@@ -28,7 +30,7 @@ import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.com
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor.service';
+
 
 
 
@@ -75,7 +77,8 @@ import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    AuthGaurdService
   ],
   bootstrap: [AppComponent]
 })

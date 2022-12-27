@@ -7,6 +7,7 @@ import { NewRecipeComponent } from 'src/app/recipes/new-recipe/new-recipe.compon
 import { RecipesComponent } from 'src/app/recipes/recipes.component';
 import { SingleRecipeComponent } from 'src/app/recipes/single-recipe/single-recipe.component';
 import { StartRecipesComponent } from 'src/app/recipes/start-recipes/start-recipes.component';
+import { AuthGaurdService } from 'src/app/shared/services/auth-gaurd.service';
 import { ResolveService } from 'src/app/shared/services/resolve.service';
 import { ShoppingListComponent } from 'src/app/shopping-list/shopping-list.component';
 
@@ -15,7 +16,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
 
   {
-    path: 'recipes', component: RecipesComponent, children:
+    path: 'recipes',
+    component: RecipesComponent,
+    canActivate: [AuthGaurdService],
+    children:
       [
         { path: '', component: StartRecipesComponent },
         { path: 'detail/:id', component: SingleRecipeComponent, resolve: [ResolveService] },
