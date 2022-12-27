@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fixed';
 //
 import { ShowDropDirective } from 'src/app/shared/directives/show-drop.directive';
@@ -28,6 +28,7 @@ import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.com
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor.service';
 
 
 
@@ -69,7 +70,12 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     RecipeService,
     DataStorageService,
     ResolveService,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
