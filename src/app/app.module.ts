@@ -30,6 +30,7 @@ import { SingleRecipeComponent } from './recipes/single-recipe/single-recipe.com
 import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 
 
@@ -53,7 +54,8 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     SpinnerComponent,
     //
     ShowDropDirective,
-    RequriedInpDirective
+    RequriedInpDirective,
+    AlertComponent
 
 
   ],

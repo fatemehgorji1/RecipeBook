@@ -36,6 +36,7 @@ export class AuthComponent implements OnInit {
         Validators.maxLength(10)
       ])
     })
+
   }
 
   onChangeModeBtn() {
