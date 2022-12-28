@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
   errorMessage: string = '';;
   successMessage: string = '';
   alertSub !: Subscription;
+  txtBtnAlert: 'Ok' | 'Close' = 'Ok';
 
   constructor(
     private authService: AuthService,
@@ -73,24 +74,30 @@ export class AuthComponent implements OnInit {
     authObs.subscribe(res => {
 
       console.log(res);
-      this.router.navigate(['/recipes']);
+      //this.router.navigate(['/recipes']);
+      this.txtBtnAlert = 'Ok';
       this.successMessage = ' success ' + res.email;
       this.isSpinner = false;
     },
       errorRes => {
-        // this.onHandlerError(errorRes);
+        //this.handlerMessage(errorRes);
         this.errorMessage = errorRes;
+        this.txtBtnAlert = 'Close';
         this.isSpinner = false;
-
       })
 
     this.form.reset();
   }
 
   onClose() {
-    this.errorMessage = '';
+    if (this.txtBtnAlert === 'Ok') {
+      this.successMessage = '';
+    }
+    if (this.txtBtnAlert === 'Close') {
+      this.errorMessage = '';
+    }
   }
-  // private onHandlerError(message: string) {
+  // private handlerMessage(message: string) {
 
   //   const alertFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
   //   const vcRefAlert = this.alert.vcRef;

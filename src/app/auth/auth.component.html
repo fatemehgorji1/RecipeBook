@@ -1,7 +1,8 @@
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
     <app-spinner *ngIf="isSpinner"></app-spinner>
 
-    <app-alert (close)="onClose()" [message]="errorMessage" *ngIf="errorMessage"></app-alert>
+    <app-alert [isAlert]="!!txtBtnAlert" (close)="onClose()" [message]="errorMessage" *ngIf="errorMessage"></app-alert>
+    <app-alert [isAlert]="!txtBtnAlert" (close)="onClose()" [message]="successMessage" *ngIf="successMessage && !errorMessage"></app-alert>
     <!-- <ng-template appPlaceholder>
 
     </ng-template> -->

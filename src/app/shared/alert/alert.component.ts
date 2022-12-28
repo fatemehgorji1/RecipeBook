@@ -9,6 +9,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class AlertComponent implements OnInit {
 
   @Input() message!: string;
+  @Input() isAlert!: boolean;
   @Output() close = new EventEmitter<void>();
   constructor() { }
 
