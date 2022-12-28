@@ -47,7 +47,9 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.alertSub.unsubscribe();
+    if (this.alertSub) {
+      this.alertSub.unsubscribe();
+    }
   }
   //events
 
@@ -78,16 +80,18 @@ export class AuthComponent implements OnInit, OnDestroy {
     authObs.subscribe(res => {
 
       console.log(res);
-      //this.router.navigate(['/recipes']);
-      this.txtBtnAlert = 'Ok';
-      this.successMessage = ' success ' + res.email;
       this.isSpinner = false;
+      this.txtBtnAlert = 'Ok';
+      this.router.navigate(['/recipes']);
+
+      //  this.successMessage = ' success ' + res.email;
+
     },
       errorRes => {
         //this.handlerMessage(errorRes);
         this.errorMessage = errorRes;
-        this.txtBtnAlert = 'Close';
         this.isSpinner = false;
+        this.txtBtnAlert = 'Close';
       })
 
     this.form.reset();
