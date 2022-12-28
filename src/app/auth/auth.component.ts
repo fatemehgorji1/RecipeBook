@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+
+import { AlertComponent } from 'src/app/shared/alert/alert.component';
+import { PlaceholderDirective } from 'src/app/shared/directives/placeholder.directive';
 
 import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
 
@@ -11,16 +14,18 @@ import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-
+  @ViewChild(PlaceholderDirective) alert !: PlaceholderDirective;
   isModeTextBtn = false;
   isSpinner = false;
   form!: FormGroup;
   errorMessage: string = '';;
   successMessage: string = '';
+  alertSub !: Subscription;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) { }
 
   ngOnInit(): void {
@@ -73,7 +78,7 @@ export class AuthComponent implements OnInit {
       this.isSpinner = false;
     },
       errorRes => {
-
+        // this.onHandlerError(errorRes);
         this.errorMessage = errorRes;
         this.isSpinner = false;
 
@@ -85,5 +90,20 @@ export class AuthComponent implements OnInit {
   onClose() {
     this.errorMessage = '';
   }
+  // private onHandlerError(message: string) {
+
+  //   const alertFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+  //   const vcRefAlert = this.alert.vcRef;
+  //   vcRefAlert.clear();
+
+  //   const componentRef = vcRefAlert.createComponent(alertFactory);
+
+  //   componentRef.instance.message = message;
+  //   this.alertSub = componentRef.instance.close.subscribe(() => {
+  //     this.alertSub.unsubscribe();
+  //     vcRefAlert.clear();
+  //   })
+
+  // }
 
 }
