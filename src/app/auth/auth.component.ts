@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   @ViewChild(PlaceholderDirective) alert !: PlaceholderDirective;
   isModeTextBtn = false;
   isSpinner = false;
@@ -28,6 +28,7 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private componentFactoryResolver: ComponentFactoryResolver
   ) { }
+
 
   ngOnInit(): void {
 
@@ -45,6 +46,9 @@ export class AuthComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    this.alertSub.unsubscribe();
+  }
   //events
 
   onChangeModeBtn() {
