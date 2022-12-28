@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit {
   isModeTextBtn = false;
   isSpinner = false;
   form!: FormGroup;
-  errorMessage: string = '';
+  errorMessage: string = '';;
   successMessage: string = '';
 
   constructor(
@@ -38,6 +38,8 @@ export class AuthComponent implements OnInit {
     })
 
   }
+
+  //events
 
   onChangeModeBtn() {
     this.isModeTextBtn = !this.isModeTextBtn;
@@ -78,6 +80,10 @@ export class AuthComponent implements OnInit {
       })
 
     this.form.reset();
+  }
+
+  onClose() {
+    this.errorMessage = '';
   }
 
 }
