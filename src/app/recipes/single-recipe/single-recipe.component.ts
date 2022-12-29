@@ -51,11 +51,11 @@ export class SingleRecipeComponent implements OnInit {
 
     this.recipeService.deleteRecipe(this.recipeDetail);
     this.router.navigate(['/recipes']);
+    // :id
 
   }
   onEditRecipeClick() {
-    this.router.navigate(['/recipes', 'edit', this.paramId]);
-
+    this.router.navigate(['/recipes', this.paramId, 'edit']);
   }
 
 }

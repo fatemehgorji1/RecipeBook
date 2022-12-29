@@ -19,9 +19,9 @@ const routes: Routes = [
     children:
       [
         { path: '', component: StartRecipesComponent },
-        { path: 'detail/:id', component: SingleRecipeComponent, resolve: [ResolveService] },
-        { path: 'edit/:id', component: NewRecipeComponent, resolve: [ResolveService] },
-        { path: 'new-recipe', component: NewRecipeComponent }
+        { path: 'new', component: NewRecipeComponent },
+        { path: ':id', component: SingleRecipeComponent, resolve: [ResolveService] },
+        { path: ':id/edit', component: NewRecipeComponent, resolve: [ResolveService] }
       ]
   },
 

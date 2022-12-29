@@ -19,6 +19,7 @@ export class NewRecipeComponent implements OnInit {
   ingredients: any;
   paramId: number = 0;
   recipe!: Recipe;
+  noRecipes: string = '';
   newIngredients = new FormArray([]);
   constructor(
     private recipeService: RecipeService,
@@ -65,9 +66,6 @@ export class NewRecipeComponent implements OnInit {
           }
         }
       }
-      else {
-        this.router.navigate(['/not-found']);
-      }
     })
   }
 
@@ -94,7 +92,9 @@ export class NewRecipeComponent implements OnInit {
         description: this.form.value.description,
         ingredients: this.form.value.ingredient
       })
-    } else if (this.recipe) {
+      this.router.navigate(['/recipes']);
+    }
+    else if (this.recipe) {
       this.recipeService.editRecipe(
         this.paramId, {
         name: this.form.value.name,
@@ -102,11 +102,11 @@ export class NewRecipeComponent implements OnInit {
         description: this.form.value.description,
         ingredients: this.form.value.ingredient
       })
+      this.router.navigate(['/recipes', this.paramId]);
     }
-    this.onCansel();
   }
   onCansel() {
-    this.router.navigate(['']);
+    this.router.navigate(['/recipes']);
   }
 
   onDeleteIngredient(index: number) {
