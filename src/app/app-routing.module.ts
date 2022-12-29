@@ -9,6 +9,8 @@ import { SingleRecipeComponent } from 'src/app/recipes/single-recipe/single-reci
 import { StartRecipesComponent } from 'src/app/recipes/start-recipes/start-recipes.component';
 import { AuthGaurdService } from 'src/app/shared/services/auth-gaurd.service';
 import { ResolveService } from 'src/app/shared/services/resolve.service';
+import { ShoppingItemComponent } from 'src/app/shopping-list/shopping-item/shopping-item.component';
+import { ShoppingListEditComponent } from 'src/app/shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { ShoppingListComponent } from 'src/app/shopping-list/shopping-list.component';
 
 const routes: Routes = [
@@ -25,7 +27,15 @@ const routes: Routes = [
       ]
   },
 
-  { path: 'shoppingList', component: ShoppingListComponent },
+  {
+    path: 'shoppingList', component: ShoppingListComponent, children: [
+      { path: 'new', component: ShoppingListEditComponent },
+      {
+        path: ':id', component: ShoppingListEditComponent
+      }
+    ]
+  },
+
 
   { path: 'auth', component: AuthComponent },
 

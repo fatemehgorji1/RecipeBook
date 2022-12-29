@@ -9,7 +9,6 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
 })
 export class ShoppingService {
 
-  editItem = new Subject<number>();
   getChangeIngredients = new Subject<Ingredient[]>();
 
   private ingredientList: Ingredient[] = [

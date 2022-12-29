@@ -32,6 +32,7 @@ import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.com
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
 
 
 
@@ -54,7 +55,8 @@ import { AlertComponent } from './shared/alert/alert.component';
     //
     ShowDropDirective,
     RequriedInpDirective,
-    PlaceholderDirective
+    PlaceholderDirective,
+    ShoppingItemComponent
 
 
   ],

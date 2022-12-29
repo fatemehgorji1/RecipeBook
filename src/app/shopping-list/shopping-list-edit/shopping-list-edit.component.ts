@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
@@ -11,17 +12,18 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
   templateUrl: './shopping-list-edit.component.html',
   styleUrls: ['./shopping-list-edit.component.css']
 })
-export class ShoppingListEditComponent implements OnInit, OnDestroy {
+export class ShoppingListEditComponent implements OnInit {
 
-  subscription !: Subscription;
+
   form !: FormGroup;
   nameBtn: string = '';
-  indexEdit: number = 0;
+  id: number = 0;
   ingredient!: Ingredient;
   ingredients: Ingredient[] = [];
 
   constructor(
-    private shopService: ShoppingService
+    private shopService: ShoppingService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -32,31 +34,33 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
       'name': new FormControl(null, [
         Validators.required,
         this.forBiddeningredientName.bind(this)
-
       ]),
       'amount': new FormControl(null, [
         Validators.required
       ])
     });
 
-    this.subscription = this.shopService.editItem.subscribe(index => {
-      this.indexEdit = index;
-      this.ingredient = this.shopService.getIngredientById(index);
-      if (this.ingredient) {
 
+    this.route.params.subscribe(param => {
+      this.id = +param['id'];
+      this.ingredient = this.shopService.getIngredientById(this.id);
+      if (this.ingredient) {
         this.nameBtn = 'Update';
         this.form.controls['name'].setValue(this.ingredient.name.trim());
         this.form.controls['amount'].setValue(this.ingredient.amount);
 
+      } else {
+        //...
       }
-
     })
 
+
+
+
+
+
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 
 
   //events 
@@ -76,7 +80,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     }
     else if (this.ingredient) {
       this.shopService.editIngredient(
-        this.indexEdit, {
+        this.id, {
         name: this.form.controls['name'].value.trim(),
         amount: this.form.controls['amount'].value
       })

@@ -13,17 +13,16 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   subscription !: Subscription;
   shopList: Ingredient[] = [];
-  ingredientActive!: number;
   constructor(
-    private shopservice: ShoppingService
+    private shopService: ShoppingService
   ) {
   }
 
 
   ngOnInit(): void {
-    this.shopList = this.shopservice.getIngredientList();
+    this.shopList = this.shopService.getIngredientList();
 
-    this.subscription = this.shopservice.getChangeIngredients.subscribe(res => {
+    this.subscription = this.shopService.getChangeIngredients.subscribe(res => {
       this.shopList = res;
     })
   }
@@ -31,12 +30,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  onEditItem(index: number) {
-    this.shopservice.editItem.next(index);
-    this.selectedIng(index);
-  }
 
-  selectedIng(index: number) {
-    this.ingredientActive = index;
-  }
+
 }
