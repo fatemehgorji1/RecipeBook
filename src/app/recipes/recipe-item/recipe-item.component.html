@@ -1,7 +1,6 @@
 <div
      [routerLink]="['/recipes','detail', index]"
      routerLinkActive="active"
-     [routerLinkActiveOptions]="{exact : true}"
      class="card">
   <div class="card-body">
     <div class="d-flex justify-content-between">
@@ -10,7 +9,7 @@
         <p class="mb-0">{{item.description}}</p>
       </div>
       <div class="align-self-center">
-        <img width="90px" src="{{item.imagePath}}" alt="{{item.name}}">
+        <img width="90px" [src]="item.imagePath" [alt]="item.name">
       </div>
     </div>
   </div>

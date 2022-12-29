@@ -11,7 +11,6 @@ import { DataStorageService } from 'src/app/shared/services/data-storage.service
 export class HeaderComponent implements OnInit {
     isAuthenticated = false;
     isToggleMenu: boolean = false;
-    @Input() selectedPage!: number;
 
     constructor(
         private dataStorageService: DataStorageService,

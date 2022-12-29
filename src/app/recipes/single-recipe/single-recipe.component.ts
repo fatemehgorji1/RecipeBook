@@ -34,12 +34,9 @@ export class SingleRecipeComponent implements OnInit {
       this.recipe = this.recipeService.getRecipeById(this.paramId);
       if (this.recipe) {
         this.recipeDetail = this.recipe;
-      }
-
-      if (!this.recipe) {
+      } else {
         this.router.navigate(['/not-found']);
       }
-
     })
 
   }

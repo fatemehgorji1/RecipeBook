@@ -10,30 +10,24 @@
     <div class="collapse navbar-collapse" [ngClass]="{'show': isToggleMenu}">
       <ul class="navbar-nav">
 
-        <li *ngIf="isAuthenticated" class="nav-item">
-          <a (click)="onLogOut()"
-             class="nav-link text-light bg-danger">
-            Log Out
-          </a>
-        </li>
+
 
         <li *ngIf="!isAuthenticated" class="nav-item">
           <a routerLink="/auth"
-             class="nav-link"
-             [ngClass]="{active: selectedPage === 0}">Authenticate</a>
+             routerLinkActive="active"
+             class="nav-link">Authenticate</a>
         </li>
-
 
         <li *ngIf="isAuthenticated" class="nav-item">
           <a routerLink="/recipes"
-             class="nav-link"
-             [ngClass]="{active: selectedPage === 1}">Recipes</a>
+             routerLinkActive="active"
+             class="nav-link">Recipes</a>
         </li>
 
         <li class="nav-item">
           <a routerLink="/shoppingList"
-             class="nav-link"
-             [ngClass]="{active: selectedPage === 2}">Shopping list</a>
+             routerLinkActive="active"
+             class="nav-link">Shopping list</a>
         </li>
 
         <li *ngIf="isAuthenticated" appShowDrop class="nav-item dropdown">
@@ -42,6 +36,13 @@
             <li><a (click)="onSaveData()" class="dropdown-item">Save Data</a></li>
             <li><a (click)="onFetchData()" class="dropdown-item">Fetch Data</a></li>
           </ul>
+        </li>
+
+        <li *ngIf="isAuthenticated" class="nav-item">
+          <a (click)="onLogOut()"
+             class="nav-link text-danger">
+            Log Out
+          </a>
         </li>
 
       </ul>

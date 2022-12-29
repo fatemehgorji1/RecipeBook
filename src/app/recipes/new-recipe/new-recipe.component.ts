@@ -65,6 +65,9 @@ export class NewRecipeComponent implements OnInit {
           }
         }
       }
+      else {
+        this.router.navigate(['/not-found']);
+      }
     })
   }
 

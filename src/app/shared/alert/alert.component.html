@@ -1,12 +1,12 @@
 <div (click)="onClose()" class="backdrop"></div>
 <div class="alert-box">
 
-    <p>{{ message }} </p>
+    <p>{{message}}</p>
 
     <div class="alert-position-right">
         <button (click)="onClose()"
-                [ngClass]="{'btn-danger': isAlert , 'btn-success' : !isAlert }" class="btn">
-            {{isAlert ? 'Close' : 'Ok'}}
+                class="btn btn-danger">
+            Close
         </button>
     </div>
 

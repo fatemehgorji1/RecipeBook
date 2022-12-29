@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
 
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
@@ -19,14 +20,13 @@ export class AuthComponent implements OnInit, OnDestroy {
   isSpinner = false;
   form!: FormGroup;
   errorMessage: string = '';;
-  successMessage: string = '';
   alertSub !: Subscription;
-  txtBtnAlert: 'Ok' | 'Close' = 'Ok';
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private toastr: ToastrService
   ) { }
 
 
@@ -80,30 +80,23 @@ export class AuthComponent implements OnInit, OnDestroy {
     authObs.subscribe(res => {
 
       console.log(res);
-      this.isSpinner = false;
-      this.txtBtnAlert = 'Ok';
       this.router.navigate(['/recipes']);
-
-      //  this.successMessage = ' success ' + res.email;
+      this.isSpinner = false;
 
     },
       errorRes => {
+
         //this.handlerMessage(errorRes);
         this.errorMessage = errorRes;
         this.isSpinner = false;
-        this.txtBtnAlert = 'Close';
       })
 
     this.form.reset();
   }
 
   onClose() {
-    if (this.txtBtnAlert === 'Ok') {
-      this.successMessage = '';
-    }
-    if (this.txtBtnAlert === 'Close') {
-      this.errorMessage = '';
-    }
+
+    this.errorMessage = '';
   }
   // private handlerMessage(message: string) {
 

@@ -1,12 +1,9 @@
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
     <app-spinner *ngIf="isSpinner"></app-spinner>
-
-    <app-alert [isAlert]="!!txtBtnAlert" (close)="onClose()" [message]="errorMessage" *ngIf="errorMessage"></app-alert>
-    <app-alert [isAlert]="!txtBtnAlert" (close)="onClose()" [message]="successMessage" *ngIf="successMessage && !errorMessage"></app-alert>
+    <app-alert (close)="onClose()" [message]="errorMessage" *ngIf="errorMessage"></app-alert>
     <!-- <ng-template appPlaceholder>
 
     </ng-template> -->
-
     <form *ngIf="!isSpinner" [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-5 mx-5">
         <div class="mb-3 mt-3">
             <label class="form-label">E-mail :
