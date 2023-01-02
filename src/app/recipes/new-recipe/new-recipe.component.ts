@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Recipe } from 'src/app/recipes/recipe';
+import { CancomponentDeactive } from 'src/app/shared/services/can-deactive-gaurd.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 
@@ -20,12 +22,15 @@ export class NewRecipeComponent implements OnInit {
   paramId: number = 0;
   recipe!: Recipe;
   noRecipes: string = '';
+  savedChange: boolean = false;
   newIngredients = new FormArray([]);
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
+
+
 
 
   ngOnInit(): void {
@@ -65,6 +70,8 @@ export class NewRecipeComponent implements OnInit {
             }))
           }
         }
+      } else {
+        this.router.navigate(['/recipes/new']);
       }
     })
   }
@@ -95,6 +102,7 @@ export class NewRecipeComponent implements OnInit {
       this.router.navigate(['/recipes']);
     }
     else if (this.recipe) {
+      this.savedChange = true;
       this.recipeService.editRecipe(
         this.paramId, {
         name: this.form.value.name,
@@ -113,5 +121,17 @@ export class NewRecipeComponent implements OnInit {
     this.newIngredients.removeAt(index);
   }
 
+  // canDeactiveComp() {
+
+  //   if ((this.recipe.name !== this.form.controls['name'].value ||
+  //     this.recipe.description !== this.form.controls['description'].value ||
+  //     this.recipe.imagePath !== this.form.controls['imagePath'].value) && !this.savedChange
+  //   ) {
+  //     return confirm('Do you want discard the changes?');
+  //   }
+  //   else {
+  //     return true;
+  //   }
+  // }
 
 }

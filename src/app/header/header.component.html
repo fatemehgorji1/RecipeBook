@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Recipe Food</a>
+    <a class="navbar-brand fw-bold" routerLink="/">Recipe Food</a>
 
     <button (click)="onToggleMenu()" class="navbar-toggler" type="button">
       <i *ngIf="isToggleMenu" class="bi bi-x-lg"></i>
@@ -9,8 +9,6 @@
 
     <div class="collapse navbar-collapse" [ngClass]="{'show': isToggleMenu}">
       <ul class="navbar-nav">
-
-
 
         <li *ngIf="!isAuthenticated" class="nav-item">
           <a routerLink="/auth"

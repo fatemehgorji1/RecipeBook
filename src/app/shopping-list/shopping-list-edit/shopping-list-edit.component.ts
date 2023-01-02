@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, CanDeactivate, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CancomponentDeactive } from 'src/app/shared/services/can-deactive-gaurd.service';
+
 
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { Ingredient } from 'src/app/shopping-list/ingredient';
@@ -20,11 +22,14 @@ export class ShoppingListEditComponent implements OnInit {
   id: number = 0;
   ingredient!: Ingredient;
   ingredients: Ingredient[] = [];
+  savesChange: boolean = false;
 
   constructor(
     private shopService: ShoppingService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
+
 
   ngOnInit(): void {
 
@@ -42,22 +47,17 @@ export class ShoppingListEditComponent implements OnInit {
 
 
     this.route.params.subscribe(param => {
+
       this.id = +param['id'];
       this.ingredient = this.shopService.getIngredientById(this.id);
       if (this.ingredient) {
         this.nameBtn = 'Update';
         this.form.controls['name'].setValue(this.ingredient.name.trim());
         this.form.controls['amount'].setValue(this.ingredient.amount);
-
       } else {
-        //...
+        this.router.navigate(['/shoppingList/new'])
       }
     })
-
-
-
-
-
 
   }
 
@@ -79,13 +79,14 @@ export class ShoppingListEditComponent implements OnInit {
       }
     }
     else if (this.ingredient) {
+      this.savesChange = true;
       this.shopService.editIngredient(
         this.id, {
         name: this.form.controls['name'].value.trim(),
         amount: this.form.controls['amount'].value
       })
     }
-    this.nameBtn = "Add";
+    this.router.navigate(['/shoppingList/new']);
     this.form.reset();
 
   }
@@ -95,13 +96,14 @@ export class ShoppingListEditComponent implements OnInit {
       this.shopService.delIngredient(this.ingredient);
     }
     this.form.reset();
-    this.nameBtn = 'Add';
+    this.router.navigate(['/shoppingList/new']);
   }
 
   onClear() {
     this.form.reset();
-    this.nameBtn = "Add";
+    this.router.navigate(['/shoppingList/new']);
   }
+
 
   forBiddeningredientName(control: FormControl) {
 

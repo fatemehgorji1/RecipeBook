@@ -33,6 +33,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
+import { CanDeactiveGaurdService } from 'src/app/shared/services/can-deactive-gaurd.service';
 
 
 
@@ -52,12 +53,11 @@ import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-it
     AuthComponent,
     SpinnerComponent,
     AlertComponent,
+    ShoppingItemComponent,
     //
     ShowDropDirective,
     RequriedInpDirective,
     PlaceholderDirective,
-    ShoppingItemComponent
-
 
   ],
   imports: [
@@ -81,7 +81,8 @@ import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-it
       useClass: AuthInterceptorService,
       multi: true
     },
-    AuthGaurdService
+    AuthGaurdService,
+    CanDeactiveGaurdService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
