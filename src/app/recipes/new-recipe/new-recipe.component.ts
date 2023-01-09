@@ -19,7 +19,6 @@ export class NewRecipeComponent implements OnInit {
   ingredients: any;
   paramId: number = 0;
   recipe!: Recipe;
-  noRecipes: string = '';
   savedChange: boolean = false;
   newIngredients = new FormArray([]);
   constructor(
