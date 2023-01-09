@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from 'src/app/auth/auth.component';
 
-import { ErrorPageComponent } from 'src/app/error-page/error-page.component';
+import { ErrorPageComponent } from 'src/app/shared/error-page/error-page.component';
 import { NewRecipeComponent } from 'src/app/recipes/new-recipe/new-recipe.component';
 import { RecipesComponent } from 'src/app/recipes/recipes.component';
 import { SingleRecipeComponent } from 'src/app/recipes/single-recipe/single-recipe.component';
