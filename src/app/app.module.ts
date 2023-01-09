@@ -9,6 +9,7 @@ import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fi
 //
 import { ShowDropDirective } from 'src/app/shared/directives/show-drop.directive';
 import { RequriedInpDirective } from './shared/directives/requried-inp.directive';
+import { PlaceholderDirective } from './shared/directives/placeholder.directive';
 //
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -17,7 +18,7 @@ import { ResolveService } from 'src/app/shared/services/resolve.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor.service';
 import { AuthGaurdService } from 'src/app/shared/services/auth-guard.service';
-import { PlaceholderDirective } from './shared/directives/placeholder.directive';
+import { CanDeactiveGaurdService } from 'src/app/shared/services/alert-guard';
 //
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/app/header/header.component';
@@ -33,7 +34,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
-import { CanDeactiveGaurdService } from 'src/app/shared/services/alert-guard';
+
 
 
 
@@ -85,8 +86,6 @@ import { CanDeactiveGaurdService } from 'src/app/shared/services/alert-guard';
     CanDeactiveGaurdService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    AlertComponent
-  ]
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
