@@ -74,16 +74,11 @@ import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-it
   providers: [
     ShoppingService,
     RecipeService,
-    DataStorageService,
-    ResolveService,
-    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    },
-    AuthGaurdService,
-    CanDeactiveGaurdService
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [AlertComponent]

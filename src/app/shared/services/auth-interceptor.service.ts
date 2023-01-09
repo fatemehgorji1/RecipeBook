@@ -4,9 +4,7 @@ import { exhaustMap, take } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/shared/services/auth.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
