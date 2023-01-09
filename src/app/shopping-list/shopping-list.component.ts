@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { Ingredient } from 'src/app/shopping-list/ingredient';
 
-
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -18,7 +17,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ) {
   }
 
-
   ngOnInit(): void {
     this.shopList = this.shopService.getIngredientList();
 
@@ -26,7 +24,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.shopList = res;
     })
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

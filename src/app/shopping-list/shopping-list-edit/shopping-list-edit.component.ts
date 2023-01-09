@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { Ingredient } from 'src/app/shopping-list/ingredient';
 
@@ -13,7 +12,6 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
   styleUrls: ['./shopping-list-edit.component.css']
 })
 export class ShoppingListEditComponent implements OnInit {
-
 
   form !: FormGroup;
   nameBtn: string = '';
@@ -43,7 +41,6 @@ export class ShoppingListEditComponent implements OnInit {
       ])
     });
 
-
     this.route.params.subscribe(param => {
 
       this.id = +param['id'];
@@ -58,7 +55,6 @@ export class ShoppingListEditComponent implements OnInit {
     })
 
   }
-
 
 
   //events 

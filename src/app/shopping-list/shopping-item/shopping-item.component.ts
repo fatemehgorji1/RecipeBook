@@ -9,14 +9,9 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
   templateUrl: './shopping-item.component.html',
   styleUrls: ['./shopping-item.component.css']
 })
-export class ShoppingItemComponent implements OnInit {
+export class ShoppingItemComponent {
   @Input() item!: Ingredient;
   @Input() index !: number;
-  constructor(
-  ) { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() { }
 
 }
