@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
-import { User } from 'src/app/user';
+import { User } from 'src/app/shared/services/user';
 export interface IAuth {
   idToken: string;
   email: string;

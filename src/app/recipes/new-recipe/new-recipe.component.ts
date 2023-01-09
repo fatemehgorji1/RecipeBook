@@ -4,7 +4,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, CanDeactivate, Router, RouterSt
 import { Observable } from 'rxjs';
 
 import { Recipe } from 'src/app/recipes/recipe';
-import { CancomponentDeactive } from 'src/app/shared/services/can-deactive-gaurd.service';
+import { CancomponentDeactive } from 'src/app/shared/services/alert-guard';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 

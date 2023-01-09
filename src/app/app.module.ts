@@ -16,7 +16,7 @@ import { DataStorageService } from 'src/app/shared/services/data-storage.service
 import { ResolveService } from 'src/app/shared/services/resolve.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor.service';
-import { AuthGaurdService } from 'src/app/shared/services/auth-gaurd.service';
+import { AuthGaurdService } from 'src/app/shared/services/auth-guard.service';
 import { PlaceholderDirective } from './shared/directives/placeholder.directive';
 //
 import { AppComponent } from './app.component';
@@ -33,7 +33,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
-import { CanDeactiveGaurdService } from 'src/app/shared/services/can-deactive-gaurd.service';
+import { CanDeactiveGaurdService } from 'src/app/shared/services/alert-guard';
 
 
 
