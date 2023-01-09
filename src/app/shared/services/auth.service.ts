@@ -28,7 +28,6 @@ export class AuthService {
     private router: Router
   ) { }
 
-
   signUp(email: string, password: string) {
 
     return this.http.post<IAuth>(this.urlSignUp, {
@@ -104,7 +103,7 @@ export class AuthService {
     }
   }
 
-  autoLogOut(expirationDuration: number) {
+  private autoLogOut(expirationDuration: number) {
     this.tokenExpiration = setTimeout(() => {
       this.logOut();
     }, expirationDuration);

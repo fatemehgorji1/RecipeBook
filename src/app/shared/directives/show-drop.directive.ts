@@ -27,6 +27,7 @@ export class ShowDropDirective {
     }
 
   }
+
   constructor(
     private el: ElementRef,
     private render: Renderer2

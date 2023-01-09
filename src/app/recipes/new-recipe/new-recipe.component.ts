@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Recipe } from 'src/app/recipes/recipe';
-import { CancomponentDeactive } from 'src/app/shared/services/alert-guard';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 

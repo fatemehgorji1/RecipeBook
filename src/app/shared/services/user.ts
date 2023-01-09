@@ -4,10 +4,7 @@ export class User {
         public id: string,
         private _token: string,
         private _refreshToken: Date
-    ) {
-
-    }
-
+    ) { }
 
     get token() {
         if (!this._refreshToken || new Date() > this._refreshToken) {
