@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { map, tap } from 'rxjs/operators';
 
 import { Recipe } from 'src/app/recipes/recipe';
@@ -14,7 +16,9 @@ export class DataStorageService {
 
   constructor(
     private http: HttpClient,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   storeRecipes() {
@@ -27,11 +31,20 @@ export class DataStorageService {
   fetchData() {
 
     return this.http.get<Recipe[]>(this.url).pipe(map(recipes => {
+      if (!recipes) {
+        this.router.navigate(['/recipes/new']);
+        this.toastr.error('the recipes list is empty , please added the new recipe', 'error', {
+          timeOut: 3000,
+        });
+        return [];
+      }
       return recipes.map(recipe => {
+
         return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] };
       })
+
     }),
-      tap(recipes => {
+      tap((recipes: any) => {
         this.recipeService.setRecipes(recipes);
       }))
 
