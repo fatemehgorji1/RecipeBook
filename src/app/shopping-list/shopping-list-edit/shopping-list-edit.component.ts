@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, CanDeactivate, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { CancomponentDeactive } from 'src/app/shared/services/can-deactive-gaurd.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
@@ -55,7 +53,7 @@ export class ShoppingListEditComponent implements OnInit {
         this.form.controls['name'].setValue(this.ingredient.name.trim());
         this.form.controls['amount'].setValue(this.ingredient.amount);
       } else {
-        this.router.navigate(['/shoppingList/new'])
+        this.router.navigate(['/shoppingList/new']);
       }
     })
 
@@ -86,8 +84,9 @@ export class ShoppingListEditComponent implements OnInit {
         amount: this.form.controls['amount'].value
       })
     }
-    this.router.navigate(['/shoppingList/new']);
     this.form.reset();
+    this.router.navigate(['/shoppingList/new']);
+
 
   }
 
@@ -103,7 +102,6 @@ export class ShoppingListEditComponent implements OnInit {
     this.form.reset();
     this.router.navigate(['/shoppingList/new']);
   }
-
 
   forBiddeningredientName(control: FormControl) {
 

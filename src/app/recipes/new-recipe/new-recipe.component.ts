@@ -32,7 +32,6 @@ export class NewRecipeComponent implements OnInit {
 
 
 
-
   ngOnInit(): void {
 
     this.titleFormBtn = "Add";
@@ -77,6 +76,7 @@ export class NewRecipeComponent implements OnInit {
   }
 
   //events
+
   addIngredient() {
     this.ingredients.push(new FormGroup({
       'name': new FormControl(null, [
@@ -121,17 +121,6 @@ export class NewRecipeComponent implements OnInit {
     this.newIngredients.removeAt(index);
   }
 
-  // canDeactiveComp() {
 
-  //   if ((this.recipe.name !== this.form.controls['name'].value ||
-  //     this.recipe.description !== this.form.controls['description'].value ||
-  //     this.recipe.imagePath !== this.form.controls['imagePath'].value) && !this.savedChange
-  //   ) {
-  //     return confirm('Do you want discard the changes?');
-  //   }
-  //   else {
-  //     return true;
-  //   }
-  // }
 
 }
