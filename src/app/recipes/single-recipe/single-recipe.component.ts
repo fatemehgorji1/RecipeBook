@@ -15,7 +15,7 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
 export class SingleRecipeComponent implements OnInit {
 
   recipeDetail !: Recipe;
-  recipe!: Recipe | undefined;
+  recipe!: Recipe;
   paramId: number = 0;
 
   constructor(
