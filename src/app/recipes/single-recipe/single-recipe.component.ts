@@ -47,7 +47,6 @@ export class SingleRecipeComponent implements OnInit {
   onAddToShoppingListClick(ingredients: Ingredient[]) {
     this.shopService.addIngredients(ingredients);
   }
-
   onDeleteRecipeClick() {
 
     this.recipeService.deleteRecipe(this.recipeDetail);
