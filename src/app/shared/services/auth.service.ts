@@ -64,12 +64,9 @@ export class AuthService {
   logOut() {//خارج میشود 
 
     this.user.next(null);
-    this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
-    if (this.tokenExpiration) {
-      clearTimeout(this.tokenExpiration);
-    }
-    this.tokenExpiration = null;
+    this.router.navigate(['/auth']);
+
   }
 
   autoLogin() {
@@ -96,18 +93,10 @@ export class AuthService {
     if (loadedUser.token) {
       //معتبر بودن توکن
       this.user.next(loadedUser);
-      const tokenExpiration = new Date(userData._tokenExpiration).getTime() - new Date().getTime();
-      if (tokenExpiration) {
-        this.autoLogOut(tokenExpiration);
-      }
     }
   }
 
-  private autoLogOut(expirationDuration: number) {
-    this.tokenExpiration = setTimeout(() => {
-      this.logOut();
-    }, expirationDuration);
-  }
+
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
     //وارد شدن کاربر از طریق لاگین یا ثبت نام
@@ -122,7 +111,6 @@ export class AuthService {
     )
 
     this.user.next(user);
-    this.autoLogOut(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 

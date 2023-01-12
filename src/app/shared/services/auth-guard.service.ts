@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot
 } from '@angular/router';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -20,7 +20,7 @@ export class AuthGaurdService implements CanActivate {
   ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
 
-    return this.authService.user.pipe(map(user => {
+    return this.authService.user.pipe(take(1), map(user => {
       const isAuth = !!user; //true
       if (isAuth) {
         return true;
