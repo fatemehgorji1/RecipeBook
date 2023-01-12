@@ -4,7 +4,7 @@
         <div class="col-12 col-xxl-6 col-xl-6 col-md-12 col-sm-12 col-lg-6">
 
             <div class="col-12 mt-5">
-                <a routerLink="/recipes/new" class="btn btn-success">Add Recipe</a>
+                <button [disabled]="recipes.length === 0" routerLink="/recipes/new" class="btn btn-success">Add Recipe</button>
             </div>
 
             <div class="container">
