@@ -44,7 +44,7 @@ export class ShoppingListEditComponent implements OnInit {
     this.route.params.subscribe(param => {
 
       this.id = +param['id'];
-      this.ingredient = this.shopService.getIngredientById(this.id);
+      this.ingredient = this.shopService.getIngredientByIndex(this.id);
       if (this.ingredient) {
         this.nameBtn = 'Update';
         this.form.controls['name'].setValue(this.ingredient.name);

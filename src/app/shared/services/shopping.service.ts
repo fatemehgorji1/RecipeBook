@@ -20,7 +20,7 @@ export class ShoppingService {
   getIngredientList() {
     return this.ingredientList;
   }
-  getIngredientById(index: number) {
+  getIngredientByIndex(index: number) {
     return this.ingredientList[index];
   }
   //shop
@@ -53,7 +53,7 @@ export class ShoppingService {
   }
 
   editIngredient(index: number, ingredient: Ingredient) {
-    const ing = this.getIngredientById(index);
+    const ing = this.getIngredientByIndex(index);
     if (ing) {
       ing.name = ingredient.name;
       ing.amount = ingredient.amount;

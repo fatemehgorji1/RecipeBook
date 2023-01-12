@@ -50,7 +50,7 @@ export class NewRecipeComponent implements OnInit {
 
     this.route.params.subscribe(param => {
       this.paramId = +param['id'];
-      this.recipe = this.recipeService.getRecipeById(this.paramId);
+      this.recipe = this.recipeService.getRecipeByIndex(this.paramId);
       if (this.recipe) {
         this.titleForm = "Update Recipe";
         this.titleFormBtn = "Update";

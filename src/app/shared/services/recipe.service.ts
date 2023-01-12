@@ -19,10 +19,8 @@ export class RecipeService {
     this.recipesChange.next(this.recipes);
   }
 
-  getRecipeById(index: number) {
-
+  getRecipeByIndex(index: number) {
     return this.recipes[index];
-
   }
 
   addnewRecipe(recipe: Recipe) {
@@ -38,7 +36,7 @@ export class RecipeService {
   }
 
   editRecipe(index: number, recipe: Recipe) {
-    let _recipe = this.getRecipeById(index);
+    let _recipe = this.getRecipeByIndex(index);
     if (_recipe) {
       _recipe.name = recipe.name;
       _recipe.description = recipe.description;
