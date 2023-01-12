@@ -100,21 +100,6 @@ export class ShoppingListEditComponent implements OnInit {
   }
 
   forBiddeningredientName(control: FormControl) {
-
-    const controlValueWithSpace = control.value?.trim() || '';
-
-    this.ingredients = this.shopService.getIngredientList();
-
-
-    if (this.nameBtn === 'Add') {
-
-      for (const ing of this.ingredients) {
-
-        if (controlValueWithSpace == ing.name) {
-          return { 'forBiddenName': true }
-        }
-      }
-    }
     return null;
   }
 }
