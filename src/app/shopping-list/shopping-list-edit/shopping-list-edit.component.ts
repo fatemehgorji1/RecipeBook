@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,6 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
   styleUrls: ['./shopping-list-edit.component.css']
 })
 export class ShoppingListEditComponent implements OnInit {
-
   form !: FormGroup;
   nameBtn: string = '';
   id: number = 0;
@@ -76,6 +75,7 @@ export class ShoppingListEditComponent implements OnInit {
     }
     else if (this.ingredient) {
       this.savesChange = true;
+
       const ings = this.shopService.getIngredientList();
       for (const ing of ings) {
         if (ing.name === this.form.controls['name'].value) {
