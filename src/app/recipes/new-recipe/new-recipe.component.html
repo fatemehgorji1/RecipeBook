@@ -33,7 +33,7 @@
         </div>
         <div class="mb-3 mt-3">
             <label class="form-label">path image :
-                <input #imagePath type="url" formControlName="imagePath" class="form-control">
+                <input pattern="https?://.+" #imagePath type="url" formControlName="imagePath" class="form-control">
             </label>
             <h6 class="text-danger"
                 *ngIf="form.controls['imagePath'].invalid &&form.controls['imagePath'].touched">
