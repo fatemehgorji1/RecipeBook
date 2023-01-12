@@ -78,7 +78,7 @@ export class ShoppingListEditComponent implements OnInit {
 
       const ings = this.shopService.getIngredientList();
       for (const ing of ings) {
-        if (ing.name === this.form.controls['name'].value) {
+        if (ing.name === (this.form.controls['name'].value).toLowerCase().trim()) {
           this.toastr.error(`It is not possible to change`, 'error', {
             timeOut: 3000,
           });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { Recipe } from 'src/app/recipes/recipe';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -24,7 +25,8 @@ export class NewRecipeComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
 
@@ -86,10 +88,21 @@ export class NewRecipeComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.form.invalid) {
       return;
     }
+    const recipes = this.recipeService.getRecipes();
+    const recipe = recipes.find(x => x.name === (this.form.controls['name'].value).toLowerCase().trim());
     if (this.titleFormBtn === "Add") {
+
+      if (recipe) {
+        this.toastr.error(`The ${recipe.name} name is in the order list, please enter another name`, 'error', {
+          timeOut: 3000,
+        });
+        return;
+      }
+      this.toastr.clear();
       this.recipeService.addnewRecipe({
         name: this.form.value.name,
         imagePath: this.form.value.imagePath,

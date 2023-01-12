@@ -24,7 +24,13 @@ export class RecipeService {
   }
 
   addnewRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
+    const changeOfName = recipe.name.toLowerCase().trim();
+    this.recipes.push({
+      description: recipe.description,
+      imagePath: recipe.imagePath,
+      ingredients: recipe.ingredients,
+      name: changeOfName
+    });
     this.recipesChange.next(this.recipes);
   }
 
@@ -36,9 +42,10 @@ export class RecipeService {
   }
 
   editRecipe(index: number, recipe: Recipe) {
+    const changeOfName = recipe.name.toLowerCase().trim();
     let _recipe = this.getRecipeByIndex(index);
     if (_recipe) {
-      _recipe.name = recipe.name;
+      _recipe.name = changeOfName;
       _recipe.description = recipe.description;
       _recipe.imagePath = recipe.imagePath;
       _recipe.ingredients = recipe.ingredients;
