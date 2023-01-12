@@ -7,7 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 import { PlaceholderDirective } from 'src/app/shared/directives/placeholder.directive';
 
-import { AuthService, IAuth } from 'src/app/shared/services/auth.service';
+import { Auth, AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -59,7 +59,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   onSubmit() {
 
-    let authObs!: Observable<IAuth>;
+    let authObs!: Observable<Auth>;
 
     const email = this.form.controls['email'].value;
     const password = this.form.controls['password'].value;
@@ -71,10 +71,16 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.isSpinner = true;
 
     if (this.isModeTextBtn === true) {
-      authObs = this.authService.signUp(email, password);
+      authObs = this.authService.signUp({
+        password: password,
+        email: email
+      });
     }
     else {
-      authObs = this.authService.login(email, password);
+      authObs = this.authService.login({
+        password: password,
+        email: email
+      });
     }
 
     authObs.subscribe(res => {

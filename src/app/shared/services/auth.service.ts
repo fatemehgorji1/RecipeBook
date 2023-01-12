@@ -4,114 +4,124 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 import { User } from 'src/app/shared/services/user';
-export interface IAuth {
+interface UserAuth {
+  password: string;
+  email: string;
+}
+export interface Auth {
   idToken: string;
   email: string;
   refreshToken: string;
   expiresIn: string;
   localId: string;
   registered?: boolean;
-
 }
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
   user = new BehaviorSubject<any>(null);
-  tokenExpiration: any;
+  tokenExpiration = null;
 
   private urlSignUp: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyClSArImXUXK_Q77Vxr_ULo3KT1BPcUEp8'
   private urlLogin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyClSArImXUXK_Q77Vxr_ULo3KT1BPcUEp8';
+  expersionDuration: any;
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
 
-  signUp(email: string, password: string) {
 
-    return this.http.post<IAuth>(this.urlSignUp, {
-      email: email,
-      password: password,
+  signUp(user: UserAuth) {
+
+    return this.http.post<Auth>(this.urlSignUp, {
+      email: user.email,
+      password: user.password,
       returnSecureToken: true
-
-    }).pipe(catchError(this.handleError), tap(resData => {
-      this.handleAuthentication(
+    }).pipe(tap(resData => {
+      this.handleAuth(
         resData.email,
         resData.localId,
-        resData.idToken,
-        +resData.expiresIn
-
+        +resData.expiresIn,
+        resData.idToken
       )
+    }), catchError(error => {
+      return this.handleError(error);
     }))
   }
 
-  login(email: string, password: string) {
-    return this.http.post<IAuth>(this.urlLogin, {
-      email: email,
-      password: password,
+  login(user: UserAuth) {
+
+    return this.http.post<Auth>(this.urlLogin, {
+      email: user.email,
+      password: user.password,
       returnSecureToken: true
-    }).pipe(catchError(this.handleError), tap(resData => {
-      this.handleAuthentication(
+    }).pipe(tap((resData: Auth) => {
+      this.handleAuth(
         resData.email,
         resData.localId,
-        resData.idToken,
-        +resData.expiresIn
+        +resData.expiresIn,
+        resData.idToken
       )
+    }), catchError(error => {
+      return this.handleError(error);
     }))
+
   }
 
-  logOut() {//خارج میشود 
-
+  logOut() {
     this.user.next(null);
     localStorage.removeItem('userData');
     this.router.navigate(['/auth']);
-
+    if (this.expersionDuration) {
+      clearTimeout(this.expersionDuration);
+    }
+    this.expersionDuration = null;
   }
-
-  autoLogin() {
-    //زمانی ک رفرش میکنیم توی حالت لاگین میماند
+  autologin() {
 
     const userData: {
-      email: string,
-      id: string,
-      _token: string,
-      _tokenExpiration: string
-
+      email: string
+      id: string;
+      _token: string;
+      _tokenExpersionDate: string;
     } = JSON.parse(localStorage.getItem('userData') || '{}');
 
     if (!userData) {
       return;
     }
-    const loadedUser = new User(
+    const loadPerson = new User(
       userData.email,
       userData.id,
       userData._token,
-      new Date(userData._tokenExpiration)
+      new Date(userData._tokenExpersionDate)
     )
-
-    if (loadedUser.token) {
-      //معتبر بودن توکن
-      this.user.next(loadedUser);
+    const expersionduration = new Date(userData._tokenExpersionDate).getTime() - new Date().getTime();
+    if (loadPerson) {
+      this.user.next(loadPerson);
+      this.autoLogOut(expersionduration);
     }
   }
+  autoLogOut(timer: number) {
+    console.log(timer);
 
-
-
-  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
-    //وارد شدن کاربر از طریق لاگین یا ثبت نام
-    const expireDate = new Date(
-      new Date().getTime() + expiresIn * 1000
-    )
-    const user = new User(
+    this.expersionDuration = setTimeout(() => {
+      this.logOut();
+    }, timer);
+  }
+  private handleAuth(email: string, localId: string, expiresIn: number, idToken: string) {
+    const tokenExpersionDate = new Date(new Date().getTime() + expiresIn * 1000)
+    const person = new User(
       email,
-      userId,
-      token,
-      expireDate
+      localId,
+      idToken,
+      tokenExpersionDate
     )
-
-    this.user.next(user);
-    localStorage.setItem('userData', JSON.stringify(user));
+    this.user.next(person);
+    this.autoLogOut(expiresIn * 1000);
+    localStorage.setItem('userData', JSON.stringify(person));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
