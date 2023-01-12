@@ -51,7 +51,6 @@ export class SingleRecipeComponent implements OnInit {
 
     this.recipeService.deleteRecipe(this.recipeDetail);
     this.router.navigate(['/recipes']);
-    // :id
 
   }
   onEditRecipeClick() {

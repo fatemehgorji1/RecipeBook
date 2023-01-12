@@ -47,7 +47,7 @@ export class ShoppingListEditComponent implements OnInit {
       this.ingredient = this.shopService.getIngredientById(this.id);
       if (this.ingredient) {
         this.nameBtn = 'Update';
-        this.form.controls['name'].setValue(this.ingredient.name.trim());
+        this.form.controls['name'].setValue(this.ingredient.name);
         this.form.controls['amount'].setValue(this.ingredient.amount);
       } else {
         this.router.navigate(['/shoppingList/new']);
@@ -67,7 +67,7 @@ export class ShoppingListEditComponent implements OnInit {
       if (this.form.controls['name'].value != ""
         && this.form.controls['amount'].value != 0) {
         this.shopService.addIngredient({
-          name: this.form.controls['name'].value.trim(),
+          name: this.form.controls['name'].value,
           amount: this.form.controls['amount'].value
         })
       }
@@ -76,7 +76,7 @@ export class ShoppingListEditComponent implements OnInit {
       this.savesChange = true;
       this.shopService.editIngredient(
         this.id, {
-        name: this.form.controls['name'].value.trim(),
+        name: this.form.controls['name'].value,
         amount: this.form.controls['amount'].value
       })
     }
