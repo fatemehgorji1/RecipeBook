@@ -105,8 +105,6 @@ export class AuthService {
     }
   }
   autoLogOut(timer: number) {
-    console.log(timer);
-
     this.expersionDuration = setTimeout(() => {
       this.logOut();
     }, timer);
