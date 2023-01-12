@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { Ingredient } from 'src/app/shopping-list/ingredient';
@@ -23,7 +24,8 @@ export class ShoppingListEditComponent implements OnInit {
   constructor(
     private shopService: ShoppingService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
 
@@ -74,11 +76,28 @@ export class ShoppingListEditComponent implements OnInit {
     }
     else if (this.ingredient) {
       this.savesChange = true;
+      const ings = this.shopService.getIngredientList();
+      for (const ing of ings) {
+        if (ing.name === this.form.controls['name'].value) {
+          this.toastr.error(`It is not possible to change`, 'error', {
+            timeOut: 3000,
+          });
+          this.toastr.info(`Please edit the ${ing.name} product through your edit section`, 'info', {
+            timeOut: 3000,
+          });
+          return;
+        }
+      }
+
       this.shopService.editIngredient(
         this.id, {
         name: this.form.controls['name'].value,
         amount: this.form.controls['amount'].value
       })
+      this.toastr.success(`the product ${this.form.controls['name'].value} Edited successfully`, 'successfully', {
+        timeOut: 3000,
+      });
+
     }
     this.form.reset();
     this.router.navigate(['/shoppingList/new']);

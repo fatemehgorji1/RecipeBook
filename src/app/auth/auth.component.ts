@@ -1,10 +1,8 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
 
-import { AlertComponent } from 'src/app/shared/alert/alert.component';
 import { PlaceholderDirective } from 'src/app/shared/directives/placeholder.directive';
 
 import { Auth, AuthService } from 'src/app/shared/services/auth.service';
@@ -25,8 +23,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private toastr: ToastrService
+    private componentFactoryResolver: ComponentFactoryResolver
   ) { }
 
 

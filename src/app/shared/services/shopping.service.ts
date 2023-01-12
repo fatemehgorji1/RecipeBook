@@ -27,13 +27,14 @@ export class ShoppingService {
   addIngredient(ingredient: Ingredient) {
     const changeOfName = ingredient.name.toLowerCase().trim();
     const ing = this.ingredientList.find(x => x.name === changeOfName);
-    if (ing) {
+    if (!ing) {
+      this.add({
+        name: changeOfName,
+        amount: ingredient.amount
+      });
+    } else {
       ing.amount += ingredient.amount
     }
-    this.add({
-      name: changeOfName,
-      amount: ingredient.amount
-    });
 
     this.getChangeIngredients.next(this.ingredientList);
   }
@@ -59,9 +60,10 @@ export class ShoppingService {
 
     const ing = this.getIngredientByIndex(index);
     if (ing) {
-      ing.name = ingredient.name;
       ing.amount = ingredient.amount;
+      ing.name = ingredient.name;
     }
+
     this.getChangeIngredients.next(this.ingredientList);
   }
 
@@ -80,8 +82,8 @@ export class ShoppingService {
         amount: ingredient.amount
       });
     }
-    this.toastr.success(`Successfully added ${ingredient.name} to shopping list !`, 'Successfully', {
-      timeOut: 1000,
+    this.toastr.success(`Successfully added ${ingredient.name} to shopping list !`, 'successfully', {
+      timeOut: 3000,
     });
 
   }
