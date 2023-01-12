@@ -14,10 +14,6 @@
                         *ngIf="form.controls['name'].errors?.['required']">
                         required name ingredient
                     </h6>
-                    <h6 class="text-danger"
-                        *ngIf="form.controls['name'].errors?.['forBiddenName']">
-                        The name is repeated
-                    </h6>
                 </div>
 
                 <div class="mb-3 col-2">

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -15,9 +15,8 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
 export class ShoppingListEditComponent implements OnInit {
   form !: FormGroup;
   nameBtn: string = '';
-  id: number = 0;
+  paramId: number = 0;
   ingredient!: Ingredient;
-  ingredients: Ingredient[] = [];
   savesChange: boolean = false;
 
   constructor(
@@ -34,8 +33,7 @@ export class ShoppingListEditComponent implements OnInit {
 
     this.form = new FormGroup({
       'name': new FormControl(null, [
-        Validators.required,
-        this.forBiddeningredientName.bind(this)
+        Validators.required
       ]),
       'amount': new FormControl(null, [
         Validators.required
@@ -44,8 +42,8 @@ export class ShoppingListEditComponent implements OnInit {
 
     this.route.params.subscribe(param => {
 
-      this.id = +param['id'];
-      this.ingredient = this.shopService.getIngredientByIndex(this.id);
+      this.paramId = +param['id'];
+      this.ingredient = this.shopService.getIngredientByIndex(this.paramId);
       if (this.ingredient) {
         this.nameBtn = 'Update';
         this.form.controls['name'].setValue(this.ingredient.name);
@@ -90,7 +88,7 @@ export class ShoppingListEditComponent implements OnInit {
       }
 
       this.shopService.editIngredient(
-        this.id, {
+        this.paramId, {
         name: this.form.controls['name'].value,
         amount: this.form.controls['amount'].value
       })
@@ -99,8 +97,7 @@ export class ShoppingListEditComponent implements OnInit {
       });
 
     }
-    this.form.reset();
-    this.router.navigate(['/shoppingList/new']);
+    this.onClear();
 
 
   }
@@ -109,8 +106,7 @@ export class ShoppingListEditComponent implements OnInit {
     if (this.ingredient) {
       this.shopService.delIngredient(this.ingredient);
     }
-    this.form.reset();
-    this.router.navigate(['/shoppingList/new']);
+    this.onClear();
   }
 
   onClear() {
@@ -118,9 +114,7 @@ export class ShoppingListEditComponent implements OnInit {
     this.router.navigate(['/shoppingList/new']);
   }
 
-  forBiddeningredientName(control: FormControl) {
-    return null;
-  }
+
 }
 
 

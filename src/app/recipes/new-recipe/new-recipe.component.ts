@@ -17,7 +17,7 @@ export class NewRecipeComponent implements OnInit {
   titleFormBtn = '';
   titleForm = '';
   form!: FormGroup;
-  ingredients: any;
+
   paramId: number = 0;
   recipe!: Recipe;
   savedChange: boolean = false;
@@ -48,7 +48,7 @@ export class NewRecipeComponent implements OnInit {
       ]),
       'ingredient': this.newIngredients
     })
-    this.ingredients = this.form.controls['ingredient'] as FormArray;
+
 
     this.route.params.subscribe(param => {
       this.paramId = +param['id'];
@@ -72,6 +72,10 @@ export class NewRecipeComponent implements OnInit {
         this.router.navigate(['/recipes/new']);
       }
     })
+  }
+
+  get ingredients() {
+    return this.form.controls['ingredient'] as FormArray;
   }
 
   //events
