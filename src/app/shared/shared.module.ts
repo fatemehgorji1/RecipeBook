@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { SpinnerCircularFixedModule } from 'spinners-angular/spinner-circular-fixed';
 
@@ -9,6 +8,7 @@ import { PlaceholderDirective } from 'src/app/shared/directives/placeholder.dire
 
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -21,19 +21,18 @@ import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
     PlaceholderDirective
   ],
   imports: [
-    CommonModule,
     ToastrModule.forRoot(),
-    SpinnerCircularFixedModule
-
+    SpinnerCircularFixedModule,
+    CommonModule
   ],
   exports: [
-    CommonModule,
     SpinnerComponent,
     AlertComponent,
     ShowDropDirective,
     RequriedInpDirective,
     PlaceholderDirective,
-    SpinnerCircularFixedModule
+    SpinnerCircularFixedModule,
+    CommonModule
 
   ],
   entryComponents: [AlertComponent]

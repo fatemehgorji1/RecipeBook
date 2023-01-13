@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { AuthGaurdService } from 'src/app/shared/services/auth-guard.service';
 import { ResolveService } from 'src/app/shared/services/resolve.service';
@@ -14,6 +15,7 @@ import { StartRecipesComponent } from 'src/app/recipes/start-recipes/start-recip
 
 
 
+
 @NgModule({
   declarations: [
     RecipesComponent,
@@ -23,11 +25,10 @@ import { StartRecipesComponent } from 'src/app/recipes/start-recipes/start-recip
     StartRecipesComponent,
   ],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
       {
-        path: 'recipes', component: RecipesComponent, canActivate: [AuthGaurdService],
+        path: '', component: RecipesComponent, canActivate: [AuthGaurdService],
         children:
           [
             { path: '', component: StartRecipesComponent },
