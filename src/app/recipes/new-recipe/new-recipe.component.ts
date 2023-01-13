@@ -96,17 +96,9 @@ export class NewRecipeComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    const recipes = this.recipeService.getRecipes();
-    const recipe = recipes.find(x => x.name === (this.form.controls['name'].value).toLowerCase().trim());
+
     if (this.titleFormBtn === "Add") {
 
-      if (recipe) {
-        this.toastr.error(`The ${recipe.name} name is in the order list, please enter another name`, 'error', {
-          timeOut: 3000,
-        });
-        return;
-      }
-      this.toastr.clear();
       this.recipeService.addnewRecipe({
         name: this.form.value.name,
         imagePath: this.form.value.imagePath,
@@ -116,6 +108,7 @@ export class NewRecipeComponent implements OnInit {
       this.router.navigate(['/recipes']);
     }
     else if (this.recipe) {
+
       this.savedChange = true;
       this.recipeService.editRecipe(
         this.paramId, {
