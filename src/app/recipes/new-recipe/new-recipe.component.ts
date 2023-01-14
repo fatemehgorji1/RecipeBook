@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 
 import { Recipe } from 'src/app/recipes/recipe';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -25,8 +25,7 @@ export class NewRecipeComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router,
-    private toastr: ToastrService
+    private router: Router
   ) { }
 
 
