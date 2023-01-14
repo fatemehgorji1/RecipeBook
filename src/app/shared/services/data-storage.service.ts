@@ -70,7 +70,16 @@ export class DataStorageService {
   }
 
   fetchShoppinglistData() {
-    return this.http.get<Ingredient[]>(this.IngredientsUrl).pipe(tap(ingredients => {
+    return this.http.get<Ingredient[]>(this.IngredientsUrl).pipe(map(ingredients => {
+      if (!ingredients) {
+        this.router.navigate(['/shoppingList/new']);
+        this.toastr.error('the shopping list is empty , please added the new recipe', 'error', {
+          timeOut: 3000,
+        });
+        return [];
+      }
+      return ingredients;
+    }), tap(ingredients => {
       this.shoppingService.setToIngredientList(ingredients);
     }));
   }
