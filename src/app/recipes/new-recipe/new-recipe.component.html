@@ -51,7 +51,7 @@
         <button (click)="addIngredient()" type="button" class="btn btn-primary text-light">Add ingredient</button>
         <div class="mt-2" formArrayName='ingredient'>
             <div *ngFor="let ing of ingredients?.controls ; let i=index" [formGroupName]="i" class="input-group mb-3">
-                <input type="text" pattern="[A-Za-z]+" formControlName="name" class="form-control" placeholder="name">
+                <input type="text" formControlName="name" class="form-control" placeholder="name">
                 <input type="number" pattern="[1-9][0-9]*$" formControlName="amount" class="form-control" placeholder="amount">
                 <span (click)="onDeleteIngredient(i)" class="cursor input-group-text bg-danger text-white">X</span>
                 <span class="text-danger mx-1 mt-2"

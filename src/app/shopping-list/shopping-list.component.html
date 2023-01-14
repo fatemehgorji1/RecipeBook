@@ -3,7 +3,7 @@
   <div class="row">
 
     <div class="col-md-12">
-      <button routerLink="/shoppingList/new" class="btn btn-success mt-3">Add Ingredient</button>
+      <button [disabled]="shopList.length === 0" routerLink="/shoppingList/new" class="btn btn-success mt-3">Add Ingredient</button>
       <router-outlet></router-outlet>
       <hr>
       <div *ngIf="shopList.length > 0 ; else noItem">

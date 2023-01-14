@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Recipe } from 'src/app/recipes/recipe';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { ShoppingService } from 'src/app/shared/services/shopping.service';
 import { Ingredient } from 'src/app/shopping-list/ingredient';
@@ -21,6 +22,7 @@ export class SingleRecipeComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private shopService: ShoppingService,
+    private dataStorageService: DataStorageService,
     private route: ActivatedRoute,
     private router: Router,
 
@@ -45,7 +47,15 @@ export class SingleRecipeComponent implements OnInit {
   //events
 
   onAddToShoppingListClick(ingredients: Ingredient[]) {
-    this.shopService.addIngredients(ingredients);
+    const ingredientList = this.shopService.getIngredientList();
+    if (ingredientList.length === 0) {
+      this.dataStorageService.fetchShoppinglistData().subscribe(() => {
+        this.shopService.addIngredients(ingredients);
+      });
+    } else {
+      this.shopService.addIngredients(ingredients);
+    }
+
   }
   onDeleteRecipeClick() {
 
