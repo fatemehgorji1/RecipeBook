@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ShoppingListComponent } from 'src/app/shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from 'src/app/shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { ShoppingItemComponent } from 'src/app/shopping-list/shopping-item/shopping-item.component';
+import { ShoppingResolverService } from 'src/app/shared/services/shopping-resolver.service';
 
 
 
@@ -26,11 +27,10 @@ import { ShoppingItemComponent } from 'src/app/shopping-list/shopping-item/shopp
         path: 'shoppingList', component: ShoppingListComponent, children: [
           { path: 'new', component: ShoppingListEditComponent },
           {
-            path: ':id', component: ShoppingListEditComponent
+            path: ':id', component: ShoppingListEditComponent, resolve: [ShoppingResolverService]
           }
         ]
       }
-
     ]),
     SharedModule
   ]

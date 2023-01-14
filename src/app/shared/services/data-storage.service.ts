@@ -6,24 +6,28 @@ import { map, tap } from 'rxjs/operators';
 
 import { Recipe } from 'src/app/recipes/recipe';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { ShoppingService } from 'src/app/shared/services/shopping.service';
+import { Ingredient } from 'src/app/shopping-list/ingredient';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
 
-  private url: string = 'https://ng-course-book-recipe-2e56e-default-rtdb.firebaseio.com/recipes.json'
+  private Recipesurl: string = 'https://ng-course-book-recipe-2e56e-default-rtdb.firebaseio.com/Recipes.json'
+  private IngredientsUrl: string = 'https://ng-course-book-recipe-2e56e-default-rtdb.firebaseio.com/Ingredients.json'
 
   constructor(
     private http: HttpClient,
     private recipeService: RecipeService,
+    private shoppingService: ShoppingService,
     private router: Router,
     private toastr: ToastrService
   ) { }
 
   storeRecipes() {
     const recipes: Recipe[] = this.recipeService.getRecipes();
-    return this.http.put(this.url, recipes).subscribe(res => {
+    return this.http.put(this.Recipesurl, recipes).subscribe(res => {
       console.log(res);
       this.toastr.success('the recipes save to list', 'successfully', {
         timeOut: 3000,
@@ -31,9 +35,10 @@ export class DataStorageService {
     })
   }
 
-  fetchData() {
 
-    return this.http.get<Recipe[]>(this.url).pipe(map(recipes => {
+  fetchRecipesData() {
+
+    return this.http.get<Recipe[]>(this.Recipesurl).pipe(map(recipes => {
       if (!recipes) {
         this.router.navigate(['/recipes/new']);
         this.toastr.error('the recipes list is empty , please added the new recipe', 'error', {
@@ -48,10 +53,26 @@ export class DataStorageService {
 
     }),
       tap((recipes: any) => {
-        this.recipeService.setRecipes(recipes);
+        this.recipeService.setToRecipes(recipes);
       }))
 
   }
 
+
+  storeShoppingList() {
+    const ingredients: Ingredient[] = this.shoppingService.getIngredientList();
+    return this.http.put(this.IngredientsUrl, ingredients).subscribe(res => {
+      console.log(res);
+      this.toastr.success('the ingredients save to list', 'successfully', {
+        timeOut: 3000,
+      });
+    });
+  }
+
+  fetchShoppinglistData() {
+    return this.http.get<Ingredient[]>(this.IngredientsUrl).pipe(tap(ingredients => {
+      this.shoppingService.setToIngredientList(ingredients);
+    }));
+  }
 
 }

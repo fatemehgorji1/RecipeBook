@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { AuthGaurdService } from 'src/app/shared/services/auth-guard.service';
-import { ResolveService } from 'src/app/shared/services/resolve.service';
+import { ResolveService } from 'src/app/shared/services/recipesResolver.service';
 
 import { RecipesComponent } from 'src/app/recipes/recipes.component';
 import { RecipeItemComponent } from 'src/app/recipes/recipe-item/recipe-item.component';

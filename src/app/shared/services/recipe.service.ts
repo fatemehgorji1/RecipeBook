@@ -14,7 +14,7 @@ export class RecipeService {
   getRecipes() {
     return this.recipes;
   }
-  setRecipes(recipes: Recipe[]) {
+  setToRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChange.next(this.recipes);
   }

@@ -29,16 +29,26 @@ export class HeaderComponent implements OnInit {
     onToggleMenu() {
         this.isToggleMenu = !this.isToggleMenu;
     }
-    onSaveData() {
-        this.dataStorageService.storeRecipes();
-    }
-    onFetchData() {
-        this.dataStorageService.fetchData().subscribe((recipes) => {
-            console.log(recipes);
-        });
-    }
     onLogOut() {
         this.authService.logOut();
     }
+    onSaveResipesData() {
+        this.dataStorageService.storeRecipes();
+    }
+    onFetchRecipesData() {
+        this.dataStorageService.fetchRecipesData().subscribe((recipes) => {
+            console.log(recipes);
+        });
+    }
+    onSaveIngredientsData() {
+        this.dataStorageService.storeShoppingList();
+    }
+    onFetchIngredientsData() {
+        this.dataStorageService.fetchShoppinglistData().subscribe(res => {
+            console.log(res);
+        })
+    }
+
+
 
 }

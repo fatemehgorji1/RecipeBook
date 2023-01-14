@@ -10,23 +10,27 @@ export class ShoppingService {
   getChangeIngredients = new Subject<Ingredient[]>();
 
   private ingredientList: Ingredient[] = [
-    {
-      name: 'tomato',
-      amount: 3
-    },
-    {
-      name: 'onion',
-      amount: 12
-    },
-    {
-      name: 'bread',
-      amount: 10
-    }
+    // {
+    //   name: 'tomato',
+    //   amount: 3
+    // },
+    // {
+    //   name: 'onion',
+    //   amount: 12
+    // },
+    // {
+    //   name: 'bread',
+    //   amount: 10
+    // }
 
   ]
 
   getIngredientList() {
     return this.ingredientList;
+  }
+  setToIngredientList(ingredients: Ingredient[]) {
+    this.ingredientList = ingredients;
+    this.getChangeIngredients.next(this.ingredientList);
   }
   getIngredientByIndex(index: number) {
     return this.ingredientList[index];
