@@ -71,7 +71,9 @@ export class ShoppingService {
       ing.amount = ingredient.amount;
       ing.name = ingredient.name;
     }
-
+    this.toastr.success(`the product ${ingredient.name} Edited successfully`, 'successfully', {
+      timeOut: 3000,
+    });
     this.getChangeIngredients.next(this.ingredientList);
   }
 

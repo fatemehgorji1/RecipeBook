@@ -79,10 +79,6 @@ export class ShoppingListEditComponent implements OnInit {
         name: this.form.controls['name'].value,
         amount: this.form.controls['amount'].value
       })
-      this.toastr.success(`the product ${this.form.controls['name'].value} Edited successfully`, 'successfully', {
-        timeOut: 3000,
-      });
-
     }
     this.onClear();
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 import { User } from 'src/app/shared/services/user';
+import { environment } from 'src/environments/environment.prod';
 interface UserAuth {
   password: string;
   email: string;
@@ -25,8 +26,8 @@ export class AuthService {
   user = new BehaviorSubject<any>(null);
   tokenExpiration = null;
 
-  private urlSignUp: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyClSArImXUXK_Q77Vxr_ULo3KT1BPcUEp8'
-  private urlLogin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyClSArImXUXK_Q77Vxr_ULo3KT1BPcUEp8';
+  private urlSignUp: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp' + environment.firebaseAPIKey
+  private urlLogin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword' + environment.firebaseAPIKey;
   expersionDuration: any;
   constructor(
     private http: HttpClient,
