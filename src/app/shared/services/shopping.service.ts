@@ -11,8 +11,16 @@ export class ShoppingService {
 
   private ingredientList: Ingredient[] = [
     {
-      name: 'pasta',
+      name: 'tomato',
       amount: 3
+    },
+    {
+      name: 'onion',
+      amount: 12
+    },
+    {
+      name: 'bread',
+      amount: 10
     }
 
   ]
