@@ -5,7 +5,7 @@
 
             <label class="form-label">Name :
 
-                <input pattern="[A-Za-z]+" formControlName="name" type="text" class="form-control">
+                <input formControlName="name" type="text" class="form-control">
             </label>
             <h6 class="text-danger"
                 *ngIf="form.controls['name'].invalid &&form.controls['name'].touched">
@@ -18,10 +18,12 @@
 
         </div>
         <div class="mb-3 mt-3">
+
+
             <label class="form-label">description :
-                <input type="text" formControlName="description" class="form-control">
+                <textarea class="form-control" rows="10" formControlName="description"></textarea>
             </label>
-            <h6 class="text-danger"
+            <h6 class=" text-danger"
                 *ngIf="form.controls['description'].invalid &&form.controls['description'].touched">
                 invalid description
             </h6>

@@ -13,6 +13,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { AuthModule } from 'src/app/auth/auth.module';
+import { ShoppingListModule } from 'src/app/shopping-list/shopping-list.module';
+import { RecipesModule } from 'src/app/recipes/recipes.module';
+import { ErrorPageModule } from 'src/app/shared/error-page/error-page.module';
 
 
 
@@ -36,8 +40,12 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
     HttpClientModule,
 
     //modules ...
+    AuthModule,
+    ShoppingListModule,
+    RecipesModule,
     CoreModule,
     SharedModule,
+    ErrorPageModule
 
 
   ],

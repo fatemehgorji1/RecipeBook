@@ -28,7 +28,7 @@ import { StartRecipesComponent } from 'src/app/recipes/start-recipes/start-recip
     ReactiveFormsModule,
     RouterModule.forChild([
       {
-        path: '', component: RecipesComponent, canActivate: [AuthGaurdService],
+        path: 'recipes', component: RecipesComponent, canActivate: [AuthGaurdService],
         children:
           [
             { path: '', component: StartRecipesComponent },

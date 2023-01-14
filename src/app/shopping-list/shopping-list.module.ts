@@ -23,7 +23,7 @@ import { ShoppingItemComponent } from 'src/app/shopping-list/shopping-item/shopp
     ReactiveFormsModule,
     RouterModule.forChild([
       {
-        path: '', component: ShoppingListComponent, children: [
+        path: 'shoppingList', component: ShoppingListComponent, children: [
           { path: 'new', component: ShoppingListEditComponent },
           {
             path: ':id', component: ShoppingListEditComponent

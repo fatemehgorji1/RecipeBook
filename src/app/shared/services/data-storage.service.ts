@@ -25,6 +25,9 @@ export class DataStorageService {
     const recipes: Recipe[] = this.recipeService.getRecipes();
     return this.http.put(this.url, recipes).subscribe(res => {
       console.log(res);
+      this.toastr.success('the recipes save to list', 'successfully', {
+        timeOut: 3000,
+      });
     })
   }
 
