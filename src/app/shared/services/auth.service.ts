@@ -26,8 +26,8 @@ export class AuthService {
   user = new BehaviorSubject<any>(null);
   tokenExpiration = null;
 
-  private urlSignUp: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp' + environment.firebaseAPIKey
-  private urlLogin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword' + environment.firebaseAPIKey;
+  private urlSignUp: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey
+  private urlLogin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey;
   expersionDuration: any;
   constructor(
     private http: HttpClient,
