@@ -14,8 +14,8 @@ import { Ingredient } from 'src/app/shopping-list/ingredient';
 })
 export class DataStorageService {
 
-  private Recipesurl: string = 'https://ng-course-book-recipe-2e56e-default-rtdb.firebaseio.com/Recipes.json'
-  private IngredientsUrl: string = 'https://ng-course-book-recipe-2e56e-default-rtdb.firebaseio.com/Ingredients.json'
+  private Recipesurl: string = 'https://book-recipes-c6e29-default-rtdb.firebaseio.com//Recipes.json'
+  private IngredientsUrl: string = 'https://book-recipes-c6e29-default-rtdb.firebaseio.com//Ingredients.json'
 
   constructor(
     private http: HttpClient,
