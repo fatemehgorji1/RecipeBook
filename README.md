@@ -3,6 +3,11 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 
 
+![image](https://user-images.githubusercontent.com/69767988/218262308-dc765033-0fdf-4a3e-8196-4d0c8f66017b.png)
+
+![image](https://user-images.githubusercontent.com/69767988/218262313-713a321e-fe3d-4889-845b-33c6931603a8.png)
+
+![image](https://user-images.githubusercontent.com/69767988/218262314-77383677-3149-4970-9395-9e6b61855ca3.png)
 
 ![image](https://user-images.githubusercontent.com/69767988/218262230-f1f84425-91c4-4130-a494-67294b9981e6.png)
 
