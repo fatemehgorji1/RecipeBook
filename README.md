@@ -1,4 +1,4 @@
-# Recipes Book
+# Recipe Book
 recipe book project by firebase(database and Authentication)
 
 Your site is live at https://fatemehgorji1.github.io/RecipeBook/
